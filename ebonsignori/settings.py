@@ -25,7 +25,7 @@ SECRET_KEY = '-9^s(2!th6$#gpnzsg)=#zn!$0gx!nht96l1gt!^78*#aeebz^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ebonsignori.com', 'www.ebonsignori.com', '127.0.0.1']
 
 
 # Application definition
@@ -127,20 +127,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'public')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "public/static"),
-    os.path.join(BASE_DIR, "public/static/css/vendor"),
-    os.path.join(BASE_DIR, "public/static/js/vendor"),
-    os.path.join(BASE_DIR, "public/static/js/vendor"),
-    os.path.join(BASE_DIR, "public/static/js"),
-    os.path.join(BASE_DIR, "public/static/css"),
-    os.path.join(BASE_DIR, "public/static/images")
+    os.path.join(BASE_DIR, "static"),
 ]
 
 # Where markdownx stores images
-MARKDOWNX_MEDIA_PATH = os.path.join(BASE_DIR, 'public/static/images/markdownx')
-# MARKDOWNX_UPLOAD_URLS_PATH = os.path.join(BASE_DIR, 'static/images/markdownx')
+MARKDOWNX_MEDIA_PATH = os.path.join(BASE_DIR, 'static/markdownx')
+MARKDOWNX_UPLOAD_URLS_PATH = os.path.join(BASE_DIR, 'static/markdownx/images')
 # MARKDOWNX_URLS_PATH = os.path.join(BASE_DIR, 'static/images/markdownx')
 MARKDOWNX_EDITOR_RESIZABLE = True
 MARKDOWNX_MARKDOWN_EXTENSIONS = [
@@ -152,3 +146,8 @@ MARKDOWNX_MARKDOWN_EXTENSIONS = [
 # Login Options
 LOGIN_REDIRECT_URL = '/blog/'
 LOGOUT_REDIRECT_URL = '/blog/'
+
+try:
+    from local_settings import *
+except ImportError as e:
+    pass
