@@ -129,17 +129,17 @@ STATIC_URL = '/static/'
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "static/css/vendor"),
-    os.path.join(BASE_DIR, "static/js/vendor"),
-    os.path.join(BASE_DIR, "static/js/vendor"),
-    os.path.join(BASE_DIR, "static/js"),
-    os.path.join(BASE_DIR, "static/css"),
-    os.path.join(BASE_DIR, "static/images")
+    os.path.join(BASE_DIR, "public/static"),
+    os.path.join(BASE_DIR, "public/static/css/vendor"),
+    os.path.join(BASE_DIR, "public/static/js/vendor"),
+    os.path.join(BASE_DIR, "public/static/js/vendor"),
+    os.path.join(BASE_DIR, "public/static/js"),
+    os.path.join(BASE_DIR, "public/static/css"),
+    os.path.join(BASE_DIR, "public/static/images")
 ]
 
 # Where markdownx stores images
-MARKDOWNX_MEDIA_PATH = os.path.join(BASE_DIR, 'static/images/markdownx')
+MARKDOWNX_MEDIA_PATH = os.path.join(BASE_DIR, 'public/static/images/markdownx')
 # MARKDOWNX_UPLOAD_URLS_PATH = os.path.join(BASE_DIR, 'static/images/markdownx')
 # MARKDOWNX_URLS_PATH = os.path.join(BASE_DIR, 'static/images/markdownx')
 MARKDOWNX_EDITOR_RESIZABLE = True
