@@ -12,3 +12,5 @@ __pycache__/
 # Virtual Env
 blogenv/
 
+# Dreamhost Server
+tmp/*
