@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+
+    {% block title %}{% if post.title %}{{ post.title }}{% else %}New Post{% endif %}{% endblock %}
+    {% block subtitle %}<h2>{% if post.title %}{{ post.subtitle }}{% else %}Creating a New Post As {{ user.get_username }}{% endif %}</h2>{% endblock %}
+
+
+    {% block meta %}
+        {% if post.title %}
+        <span class="meta">
+            Posted by {{ post.author }} on
+            {% if post.published_date %}
+                {{ post.published_date|date:"F j, Y" }}
+            {% endif %}
+        </span>
+        {% endif %}
+    {% endblock %}
+    {% block post_options %}
+        {% if post.title %}
+            <br /> <br />
+            {% if not post.published_date %}
+                <a class="btn btn-default options-btn publish" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
+            {% endif %}
+            <a class="btn btn-default options-btn remove" href="{% url 'post_remove' slug=post.slug %}">Remove</a>
+            <p>Created: {{ post.created_date|date:"F j, Y" }} <br />
+               Updated: {{ post.updated_date|date:"F j, Y" }}</p>
+        {% endif %}
+    {%  endblock %}
+
+
+{% block content %}
+    <div class="edit-form-wrap">
+    <form class="edit-form" method="POST" action="">{% csrf_token %}
+        {{ form.as_ul }}
+        <button type="submit" class="save btn btn-default options-btn publish" style="color:black">Save</button>
+    </form>
+    {{ form.media }}
+    </div>
+{% endblock %}

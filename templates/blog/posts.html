@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% block page_title %}Evan Bonsignori's Blog{% endblock %}
+{% block title %}Blog{% endblock %}
+{% block subtitle %}Recent Posts{% endblock %}
+
+{% block content %}
+     <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+    {% for post in posts %}
+        {% if post.is_deleted == False and post.is_published %}
+             <div class="post-preview">
+                 <a href="{{ post.get_absolute_url }}">
+                  <h2 class="post-title">
+                    {{ post.title }}
+                  </h2>
+                  <h3 class="post-subtitle">
+                    {{ post.subtitle }}
+                  </h3>
+                </a>
+                <p class="post-meta">Posted by
+                  <a href="#">{{ post.author }}</a>
+                  on {{ post.published_date|date:"F j, Y" }}</p>
+                 {% if user.is_authenticated %}
+                    <a class="btn btn-default options-btn inline-btn publish" href="{% url 'post_edit' slug=post.slug %}">Edit Post</a>
+                 {% endif %}
+              </div>
+              <hr />
+        {% endif %}
+    {% endfor %}
+        </div>
+      </div>
+    </div>
+{% endblock %}

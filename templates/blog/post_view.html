@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+{% block subtitle %}<h2>{{ post.subtitle }}</h2>{% endblock %}
+{% block meta %}
+    <span class="meta">
+        Posted by {{ post.author }} on
+        {% if post.published_date %}
+            {{ post.published_date |date:"F j, Y"}}
+        {% endif %}
+    </span>
+{% endblock %}
+
+{% block post_options %}
+    {% if user.is_authenticated %}
+        <br />
+        {% if not post.published_date %}
+                <a class="btn btn-default options-btn publish" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
+        {%  endif %}
+        <a class="btn btn-default options-btn edit" href="{% url 'post_edit' slug=post.slug %}"><span class="glyphicon glyphicon-pencil">Edit Post</span></a>
+        <a class="btn btn-default options-btn remove" href="{% url 'post_remove' slug=post.slug %}"><span class="glyphicon glyphicon-trash">Delete Post</span></a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+    <article>
+      <div class="container">
+             {% autoescape off %}{{ post.text |safe }}{% endautoescape %}
+
+            <hr />
+            <div class="post-info">
+                 <strong>Category</strong> : {{ post.category }}
+                 <br />
+                <strong>Last updated on</strong> : {{ post.updated_date|date:"F j, Y" }}
+                 <br />
+                <strong> By </strong>: {{ post.author }}
+            </div>
+      </div>
+    </article>
+        </div>
+      </div>
+    </div>
+{% endblock %}
