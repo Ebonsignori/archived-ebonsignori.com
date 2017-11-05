@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^post/(?P<slug>[-\w]+)/$', views.post_view, name='post_view'),
     url(r'^drafts/$', views.post_draft_list, name='post_draft_list'),
     url(r'^deleted/$', views.post_deleted_list, name='post_deleted_list'),
+    url(r'^category/new/$', views.category_new, name='category_new'),
+    url(r'^category/(?P<slug>[-\w]+)/edit$', views.category_edit, name='category_edit'),
 ]

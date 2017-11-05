@@ -37,7 +37,7 @@ p {
   transition: linear all 1s;
   -webkit-transition-delay: 1s;
   transition-delay: 1s;
-  background-image: url('home/images/background.png');
+  /*background-image: url('../../images/background.png');*/
   background-repeat: no-repeat;
   background-size:fill;
   position: relative;
@@ -457,7 +457,7 @@ p {
   position: relative;
   margin-top: -1px !important;
   min-height: 100%;
-  background: url("home/images/grey_wash_wall.png");
+  /*background: url("../../images/grey_wash_wall.png");*/
 }
 
 #shell {
@@ -763,7 +763,7 @@ p {
 
 /* Footer */
 footer {
-  background-image: url('home/images/background.png');
+  /*background-image: url('../../images/background.png');*/
   padding: 25px 0;
   text-align: center;
 }

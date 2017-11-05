@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from markdownx.utils import markdownify
-from .models import Post
-from .forms import PostForm
+from .models import Post, Category
+from .forms import PostForm, CategoryForm
 from django.utils import timezone
 
 
@@ -90,3 +90,28 @@ def post_delete(request, slug):
     post = get_object_or_404(Post, slug=slug)
     post.delete()
     return redirect("/blog/deleted")
+
+
+@login_required
+def category_new(request):
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/blog')
+    else:
+        form = CategoryForm()
+    return render(request, 'blog/category_edit.html', {'form': form})
+
+
+@login_required
+def category_edit(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    if request.method == "POST":
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            category.save()
+            return redirect('post_view', slug=category.slug)
+    else:
+        form = CategoryForm(instance=category)
+    return render(request, 'blog/category_edit.html', {'form': form, 'category': category})

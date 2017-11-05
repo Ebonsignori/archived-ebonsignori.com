@@ -27,6 +27,18 @@
 </head>
 
 <body>
+    <style>
+        #background-slider {
+            background-image: url("{% static 'home/images/background.png' %}");
+        }
+        #about-section {
+            background: url("{% static 'home/images/grey_wash_wall.png' %}");
+        }
+        footer {
+            background-image: url("{% static 'home/images/background.png' %}");
+        }
+    </style>
+
   <nav data-spy="affix" id="dot-nav">
     	<ul>
 	      <li class="awesome-tooltip active" title="Home"><a href="#background-slider"></a></li>
@@ -158,7 +170,7 @@
                               <i class="fa fa-plus fa-3x"></i>
                           </div>
                       </div>
-                      <img src="{% static 'home/images/portfolio/mirror_image.jpg' %}" class="img-responsive" alt="">
+                      <img src="{% static 'home/images/portfolio/mirror_image.png' %}" class="img-responsive" alt="">
                   </a>
                   <div class="portfolio-caption">
                       <h4>Mirror Image Hair Salon</h4>

@@ -58,11 +58,14 @@
                   <li class="nav-item">
                <a href="{% url 'post_new' %}" class="nav-link">New Post</a>
                 </li>
-                  <li class="nav-item">
-               <a href="{% url 'post_draft_list' %}" class="nav-link">Draft List</a>
+                    <li class="nav-item">
+               <a href="{% url 'category_new' %}" class="nav-link">New Category</a>
                 </li>
                   <li class="nav-item">
-               <a href="{% url 'post_deleted_list' %}" class="nav-link">Deleted List</a>
+               <a href="{% url 'post_draft_list' %}" class="nav-link">Drafts</a>
+                </li>
+                  <li class="nav-item">
+               <a href="{% url 'post_deleted_list' %}" class="nav-link">Deleted</a>
                 </li>
                   <li class="nav-item"><a href="{% url 'logout' %}">Log out</a></li>
             {% else %}

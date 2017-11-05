@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 
-    {% block title %}{% if post.title %}{{ post.title }}{% else %}New Post{% endif %}{% endblock %}
+    {% block title %}{% if post.title %}Editing: {{ post.title }}{% else %}New Post{% endif %}{% endblock %}
     {% block subtitle %}<h2>{% if post.title %}{{ post.subtitle }}{% else %}Creating a New Post As {{ user.get_username }}{% endif %}</h2>{% endblock %}
 
 

@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+
+    {% block title %}{% if category.title %}Editing: {{ category.title }}{% else %}New Category{% endif %}{% endblock %}
+
+{% block content %}
+    <div class="edit-form-wrap">
+    <form class="edit-form" method="POST" action="">{% csrf_token %}
+        {{ form.as_ul }}
+        <button type="submit" class="save btn btn-default options-btn publish" style="color:black">Save</button>
+    </form>
+    {{ form.media }}
+    </div>
+{% endblock %}

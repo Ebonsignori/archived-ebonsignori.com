@@ -17,14 +17,16 @@
                     {{ post.title }}
                   </h2>
                   <h3 class="post-subtitle">
-                    {{ post.subtitle }}
+                    {{ post.subtitle }} <br />
+                      Category: {{ post.category }}
                   </h3>
                 </a>
                 <p class="post-meta">Posted by
                   <a href="#">{{ post.author }}</a>
                   on {{ post.published_date|date:"F j, Y" }}</p>
                  {% if user.is_authenticated %}
-                    <a class="btn btn-default options-btn inline-btn publish" href="{% url 'post_edit' slug=post.slug %}">Edit Post</a>
+                    <a class="btn btn-default options-btn inline-btn edit" href="{% url 'post_edit' slug=post.slug %}">Edit Post</a>
+                     <a class="btn btn-default options-btn inline-btn edit" href="{% url 'category_edit' slug=post.category.slug %}">Edit Category</a>
                  {% endif %}
               </div>
               <hr />
