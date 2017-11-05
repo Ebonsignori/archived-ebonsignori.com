@@ -16,8 +16,8 @@ Including another URLconfT
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views
+from django.conf import settings
 from markdownx import urls as markdownx
-import importlib
 
 urlpatterns = [
     url(r'^', include('home.urls')),
@@ -29,6 +29,6 @@ urlpatterns = [
 ]
 
 
-if importlib.util.find_spec("settings_local") is not None:
+if settings.DEBUG:
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
     urlpatterns += staticfiles_urlpatterns()

@@ -37,7 +37,7 @@ ROOT_URLCONF = 'ebonsignori.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../ebonsignori/templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -97,8 +97,8 @@ STATICFILES_DIRS = [
 ]
 
 # Where markdownx stores images
-MARKDOWNX_MEDIA_PATH = os.path.join(BASE_DIR, 'static/../../static/markdownx')
-MARKDOWNX_UPLOAD_URLS_PATH = os.path.join(BASE_DIR, 'static/markdownx/images')
+MARKDOWNX_MEDIA_PATH = os.path.join(BASE_DIR, 'public/static/markdownx')
+MARKDOWNX_UPLOAD_URLS_PATH = os.path.join(BASE_DIR, 'public/static/markdownx/images')
 # MARKDOWNX_URLS_PATH = os.path.join(BASE_DIR, 'static/images/markdownx')
 MARKDOWNX_EDITOR_RESIZABLE = True
 MARKDOWNX_MARKDOWN_EXTENSIONS = [
