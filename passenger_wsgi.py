@@ -12,6 +12,6 @@ sys.path.insert(0,'$HOME/.virtualenvs/ebonsignori/bin')
 sys.path.insert(0,'$HOME/.virtualenvs/ebonsignori/lib/python3.6/site-packages/django')
 sys.path.insert(0,'$HOME/.virtualenvs/ebonsignori/lib/python3.6/site-packages')
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ebonsignori.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'ebonsignori.settings_production'
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
