@@ -350,10 +350,12 @@ form .form-group:first-child .floating-label-form-group {
 /* Markdownx form editor */
 .markdownx-editor {
   display: inline-block;
-  resize: vertical;
-  height: 300px;
+  overflow: scroll;
+  height: 1000px;
   width: 35%;
   margin-right: 5%;
+  font-size: .6em;
+  font: 
 }
 
 .markdownx-preview {
@@ -363,7 +365,7 @@ form .form-group:first-child .floating-label-form-group {
   border: 1px solid black;
   display: inline-block;
   width: 35%;
-  height: 300px;
+  height: 1000px;
   overflow: auto;
   resize: vertical;
   margin-left: 5%;
