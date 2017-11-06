@@ -20,3 +20,10 @@ tmp/*
 ebonsignori/local_settings.py
 /ebonsignori/settings_production.py
 /ebonsignori/settings_local.py
+
+
+# Error Files
+ebonsignori/.settings.py.swp
+ebonsignori/.settings_BASE_6868.py.swp
+ebonsignori/.settings_LOCAL_6868.py.swp
+ebonsignori/.settings_REMOTE_6868.py.swp

@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+    {% block title %}New Comment{% endblock %}
+    {% block subtitle %}<h2>{% if post.title %}On {{ post.title }}{% endif %}</h2>{% endblock %}
+
+    {% block meta %}
+        <span class="meta"> <a style="color: white; font-style: italic" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown Format Supported</a>
+        </span>
+    {% endblock %}
+
+{% block content %}
+    <div class="edit-form-wrap-comment">
+    <form class="edit-form" method="POST" action="">{% csrf_token %}
+        {{ form.as_ul }}
+        <button type="submit" class="save btn btn-default options-btn publish" style="color:black">Save</button>
+    </form>
+    {{ form.media }}
+    </div>
+{% endblock %}
