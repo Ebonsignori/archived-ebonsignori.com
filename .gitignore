@@ -1,10 +1,10 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-
-# Django stuff:
-*.log
-*.pot
+## Byte-compiled / optimized / DLL files
+#__pycache__/
+#*.py[cod]
+#
+## Django stuff:
+#*.log
+#*.pot
 
 # Pycharm
 .idea
@@ -22,8 +22,3 @@ ebonsignori/local_settings.py
 /ebonsignori/settings_local.py
 
 
-# Error Files
-ebonsignori/.settings.py.swp
-ebonsignori/.settings_BASE_6868.py.swp
-ebonsignori/.settings_LOCAL_6868.py.swp
-ebonsignori/.settings_REMOTE_6868.py.swp
