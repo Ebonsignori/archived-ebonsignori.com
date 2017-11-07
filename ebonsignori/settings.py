@@ -47,6 +47,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # Custom Template Tags
+            'libraries':{
+                'add_css': 'ebonsignori.templatetags.add_css',
+            }
         },
     },
 ]
@@ -111,3 +115,13 @@ MARKDOWNX_MARKDOWN_EXTENSIONS = [
 LOGIN_REDIRECT_URL = '/blog/'
 LOGOUT_REDIRECT_URL = '/blog/'
 
+# Email
+EMAIL_HOST = 'sub5.mail.dreamhost.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'evan@ebonsignori.com'
+EMAIL_HOST_PASSWORD = 'Kvothe586843'
+EMAIL_USE_TLS = True
+
+# Media Files
+MEDIA_ROOT= os.path.join(BASE_DIR, 'static/media')
+MEDIA_URL='/media/'

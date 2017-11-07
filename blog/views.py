@@ -4,14 +4,16 @@ from django.http import HttpResponse
 from markdownx.utils import markdownify
 from .models import Post, Category, Comment
 from .forms import PostForm, CategoryForm, CommentForm
+from django.core.mail import send_mail
 from django.utils import timezone
 
 
 def post_list(request):
     posts = Post.objects.filter(is_deleted=False).order_by('published_date')
+    categories = Category.objects.all().order_by('order')
     for post in posts:
         post.text = markdownify(post.text)
-    return render(request, 'blog/posts.html', {'posts': posts})
+    return render(request, 'blog/posts.html', {'posts': posts, 'categories': categories})
 
 
 def post_view(request, slug):
@@ -131,6 +133,15 @@ def add_comment_to_post(request, slug):
             return redirect('post_view', slug=post.slug)
     else:
         form = CommentForm()
+
+    send_mail(
+        'New Comment on \"' + str(post) + '\"',
+        str(post.comments.last().text),
+        'evan@ebonsignori.com',
+        ['evanabonsignori@gmail.com'],
+        fail_silently=False,
+    )
+
     return render(request, 'blog/add_comment_to_post.html', {'form': form, 'post': post})
 
 
@@ -146,3 +157,22 @@ def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_view', slug=comment.post.slug)
+
+
+def change_category(request, slug):
+    category = Category.objects.filter(slug=slug)
+    categories = Category.objects.all().order_by('order')
+    posts = Post.objects.filter(category=category).order_by('published_date')
+    return render(request, 'blog/posts.html', {'posts': posts, 'category': category[0], 'categories': categories})
+
+
+def category_delete(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    # Fetch posts with given category and send them to drafts
+    posts = Post.objects.filter(category_id=pk)
+    for post in posts:
+        post.category = None
+        post.is_published = False
+        post.save()
+    category.delete()
+    return redirect("/blog")

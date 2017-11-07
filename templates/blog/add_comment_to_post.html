@@ -12,8 +12,12 @@
     <div class="edit-form-wrap-comment">
     <form class="edit-form" method="POST" action="">{% csrf_token %}
         {{ form.as_ul }}
-        <button type="submit" class="save btn btn-default options-btn publish" style="color:black">Save</button>
+        <button type="submit" class="save btn btn-default options-btn publish" style="color:black">Post Comment</button>
+
     </form>
     {{ form.media }}
+    </div>
+    <div style="text-align: center;">
+    <em>Comments must be approved before being displayed</em>
     </div>
 {% endblock %}

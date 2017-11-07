@@ -2,7 +2,42 @@
 
 {% block page_title %}Evan Bonsignori's Blog{% endblock %}
 {% block title %}Blog{% endblock %}
-{% block subtitle %}Recent Posts{% endblock %}
+{% block subtitle %}{% if category %}{% else %}Recent Posts{% endif %}{% endblock %}
+{% block meta %}
+    <span class="meta">
+        <nav class="dropdown">
+          <button class="dropbtn">
+          {% if category %}
+          {% for cat in categories %}
+                {% if category.title == cat.title %}{{ cat.title }}
+                {% endif %}
+          {% endfor %}
+          {% else %}Select A Category
+          {% endif %}
+
+          </button>
+          <div class="dropdown-content">
+          {% for cat in categories %}
+              {% if category %}
+                  {% if cat.title != category.title %}
+                    <a href="{% url 'change_category' slug=cat.slug %}">{{ cat.title }}</a>
+                  {% endif %}
+              {% else %}
+                  <a href="{% url 'change_category' slug=cat.slug %}">{{ cat.title }}</a>
+              {% endif %}
+          {% endfor %}
+          </div>
+        </nav>
+
+        {% for cat in categories %}
+                {% if category.title == cat.title %}
+                    <br />
+                     <br />
+                    <a class="btn btn-default options-btn remove" href="{% url 'category_delete' pk=category.pk %}">Delete Category</a>
+                {% endif %}
+          {% endfor %}
+    </span>
+{% endblock %}
 
 {% block content %}
      <!-- Main Content -->
@@ -26,7 +61,9 @@
                   on {{ post.published_date|date:"F j, Y" }}</p>
                  {% if user.is_authenticated %}
                     <a class="btn btn-default options-btn inline-btn edit" href="{% url 'post_edit' slug=post.slug %}">Edit Post</a>
-                     <a class="btn btn-default options-btn inline-btn edit" href="{% url 'category_edit' slug=post.category.slug %}">Edit Category</a>
+                     {% if post.category %}
+                         <a class="btn btn-default options-btn inline-btn edit" href="{% url 'category_edit' slug=post.category.slug %}">Edit Category</a>
+                     {% endif %}
                  {% endif %}
               </div>
               <hr />

@@ -8,7 +8,7 @@ class Post(models.Model):
     author = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=200, null=True, blank=True)
-    category = models.ForeignKey('blog.Category')
+    category = models.ForeignKey('blog.Category', on_delete=models.SET_NULL, null=True, blank=True)
     text = MarkdownxField()
     created_date = models.DateTimeField(
             default=timezone.now)
@@ -42,6 +42,7 @@ class Post(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=100, db_index=True, unique=True)
     slug = models.SlugField(max_length=100, db_index=True, unique=True)
+    order = models.IntegerField(unique=True, null=True)
 
     def __str__(self):
         return self.title

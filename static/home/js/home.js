@@ -31,16 +31,15 @@ centerProfile(); // Load and center profile picture and buttons
 $(window).resize(function() {
   $('#triangle').css("top", $('#background-slider').height()-70 + "px");
   centerProfile();
-});
+})
 
-
-// Select all links with hashes and add smoothscroll
+var $root = $('html, body');
 $('.smooth-scroll').on('click', function(e) {
   if ( $('#overlay').hasClass('open') ) {
-    $('#overlay').toggleClass('open');
+      $('#toggle').toggleClass('active');
+      $('#overlay').toggleClass('open');
   }
-  e.preventDefault();
-  $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+  $root.animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
 });
 
 
@@ -119,3 +118,48 @@ function showContactInfo() {
               $('#contact-show').fadeIn("slow");
             });
 }
+
+/* Contact Form */
+$(document).ready(function() {
+	// Test for placeholder support
+    $.support.placeholder = (function(){
+        var i = document.createElement('input');
+        return 'placeholder' in i;
+    })();
+
+    // Hide labels by default if placeholders are supported
+    if($.support.placeholder) {
+        $('.form-label').each(function(){
+            $(this).addClass('js-hide-label');
+        });
+
+        // Code for adding/removing classes here
+        $('.form-group').find('input, textarea').on('keyup blur focus', function(e){
+
+            // Cache our selectors
+            var $this = $(this),
+                $parent = $this.parent().find("label");
+
+            if (e.type == 'keyup') {
+                if( $this.val() == '' ) {
+                    $parent.addClass('js-hide-label');
+                } else {
+                    $parent.removeClass('js-hide-label');
+                }
+            }
+            else if (e.type == 'blur') {
+                if( $this.val() == '' ) {
+                    $parent.addClass('js-hide-label');
+                }
+                else {
+                    $parent.removeClass('js-hide-label').addClass('js-unhighlight-label');
+                }
+            }
+            else if (e.type == 'focus') {
+                if( $this.val() !== '' ) {
+                    $parent.removeClass('js-unhighlight-label');
+                }
+            }
+        });
+    }
+});
