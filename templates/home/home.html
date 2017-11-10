@@ -117,13 +117,13 @@
     <div id="shell">
       <div id="upper">
         <div id="buttons">
-          <div class="button red toolbartip toolbar-red">
+          <div class="button red toolbartip toolbar-red" id="toolbar-red">
             <div class="inner-light-top"></div>
             <div class="inner-light-bottom"></div>
             <div class="inner-dark-top"></div>
             <span class="toolbartiptext red">Reset</span>
           </div>
-          <div class="button yellow toolbartip toolbar-yellow">
+          <div class="button yellow toolbartip toolbar-yellow" id="toolbar-yellow">
             <div class="inner-light-top"></div>
             <div class="inner-dark-top"></div>
             <div class="inner-light-bottom"></div>
@@ -154,9 +154,9 @@
           <div class="row">
               <ul id="filters" class="clearfix">
                 <li><span class="filter active" id="all">All</span></li>
-                <li><span class="filter" data-cat="webdev">Web Development</span></li>
-                <li><span class="filter" data-cat="proofofconcept">Proof of Concept</span></li>
-                <li><span class="filter" data-cat="coursework">Coursework</span></li>
+                   {% for item in portfolio_categories %}
+                <li><span class="filter" data-cat="{{ item.data_cat }}">{{ item.title }}</span></li>
+                  {% endfor %}
               </ul>
           </div>
 
@@ -164,14 +164,14 @@
           <div class="row">
               {% for item in portfolio_items %}
                       <!-- Portfolio Display-->
-                   <div class="col-lg-4 col-md-4 col-sm-6 portfolio-item" data-cat="{{ item.data_cat }}">
+                   <div class="col-lg-4 col-md-4 col-sm-6 portfolio-item" data-cat="{{ item.category.data_cat }}">
                       <a href="#{{ item.modal_id }}" class="portfolio-link" data-toggle="modal">
                           <div class="portfolio-hover">
                               <div class="portfolio-hover-content">
                                   <i class="fa fa-plus fa-3x"></i>
                               </div>
                           </div>
-                          <img src="{{ item.display_image }}" class="img-responsive" alt="">
+                          <img src="{{ MEDIA_URL }}{{ item.display_image.url }}" class="img-responsive" alt="">
                       </a>
                       <div class="portfolio-caption">
                           <h4>{{ item.caption_title }}</h4>
@@ -191,8 +191,6 @@
         <div class="container">
             <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3">
-                    <div id="contact-form">
-
                       <form id="contact-form" class="form" action="#contact-section" method="POST" role="form">
                           {% csrf_token %}
                           {{ form.non_field_errors }}
@@ -222,7 +220,7 @@
                           </div>
 
                           <div class="text-center">
-                              <button type="submit" class="btn btn-start-order">Send Message</button>
+                              <button type="submit" id="message_submit" class="btn btn-start-order">Send Message</button>
                           </div>
 
                       </form>
@@ -231,7 +229,6 @@
                                     <p style="color: green"> Message sent! </p>
                               {% endif %}
                          </div>
-                    </div>
                </div>
             </div>
         <div>
@@ -307,8 +304,16 @@
                                   <div class="row">
                                       <div class="col-lg-8 col-lg-offset-2">
                                           <div class="modal-body">
+                                              <h2>{{ item.modal_header }}</h2>
+                                              <p class="item-intro text-muted">{{ item.modal_subtitle }}</p>
+                                              <img class="img-responsive img-centered" {% if item.modal_image %}src="{{ item.modal_image.url }}"{% endif %}></img>
                                               {% autoescape off %}{{ item.modal_body|safe }}{% endautoescape %}
                                               <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                                              <ul class="list-inline">
+                                                  <li>Date: {{ item.modal_date }}</li>
+                                                  <li>Client: {{ item.modal_date }}</li>
+                                                  <li>Category: {{ item.category.title }}</li>
+                                              </ul>
                                           </div>
                                       </div>
                                   </div>
@@ -321,7 +326,7 @@
   <script type="text/javascript" src="{% static 'home/js/vendor/bootstrap3.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'home/js/vendor/typed.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'home/js/home.js' %}"></script>
-  <script type="text/javascript" src="{% static 'home/js/dotnav.js' %}"></script>
+{#  <script type="text/javascript" src="{% static 'home/js/dotnav.js' %}"></script>#}
   <script type="text/javascript" src="{% static 'home/js/terminal.js' %}"></script>
   <script type="text/javascript" src="{% static 'home/js/portfolio_sort.js' %}"></script>
 

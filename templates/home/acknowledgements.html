@@ -1,0 +1,118 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<head>
+     <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+              user-scalable=no" />
+  <meta name="url" content="https://ebonsignori.com/">
+
+  <title>Acknowledgements | Evan A. Bonsignori</title>
+  <meta name="author" content="Evan A. Bonsignori">
+  <meta name="description" content="Evan Bonsignori's Website.">
+
+
+  <meta property="og:description" content="Evan Bonsignori's Website Acknowledgements.">
+  <meta property="og:title" content="Evan A. Bonsignori">
+
+
+     <link href="{% static 'home/css/home.css' %}" rel="stylesheet"> <!-- Custom CSS -->
+    <link href="{% static 'home/css/vendor/bootstrap3.min.css' %}" rel="stylesheet">  <!-- Bootstrap Core CSS -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> <!-- Font-Awesome CSS -->
+
+  <script type="text/javascript" src="{% static 'home/js/vendor/jquery-3.2.1.min.js' %}"></script>
+ </head>
+
+<body>
+<!-- Nav bar -->
+<div class="button_container" id="toggle">
+  <span class="top"></span>
+  <span class="middle"></span>
+  <span class="bottom"></span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <nav class="overlay-menu">
+      <ul>
+        <li><a class="smooth-scroll" href="/#background-slider">Home</a></li>
+        <li><a href="../blog">Blog</a></li>
+        <li><a class="smooth-scroll" href="/#about-section">About</a></li>
+        <li><a class="smooth-scroll" href="/#portfolio">Portfolio</a></li>
+        <li><a class="smooth-scroll" href="/#contact-section">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+
+<!-- Main Content: Acknowledgements -->
+<div class="container">
+    <div class="row">
+        <h1 class="text-center"> Acknowledgements </h1>
+        <br />
+    <hr/>
+            {% for acknowledgement in acknowledgements %}
+                <h3 class="text-center">{{ acknowledgement.subject }}</h3>
+                <p class="text-center">{{ acknowledgement.description }}</p>
+                 {%  if acknowledgement.link  %}
+                <br />
+                     <div class="text-center"><a href="{{ acknowledgement.link }}">{{ acknowledgement.link_text }}</a></div>
+                 <br />
+                     {% if acknowledgement.used_link %}
+                 <div class="text-center">Used in: <a href="{{ acknowledgement.used_link }}">{{ acknowledgement.used_text }}</a></div>
+                         {% endif %}
+
+                {% endif %}
+                <hr/>
+            {% endfor %}
+    </div>
+</div>
+
+
+<!-- Footer -->
+  <footer>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                  <span class="copyright">Copyright &copy; Evan Bonsignori 2017</span>
+              </div>
+              <div class="col-md-4">
+                      <ul class="list-inline social-network social-circle">
+                        <li>
+                          <a href="/" class="icoHome">
+                            <i class="fa fa-home"></i></a>
+                        </li>
+                        <li>
+                          <a href="https://www.facebook.com/ebonsignori" target="_blank" class="icoFacebook">
+                            <i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                          <a href="https://github.com/Ebonsignori" target="_blank" class="icoGithub">
+                            <i class="fa fa-github"></i></a>
+                        </li>
+                        <li>
+                          <a href="https://www.linkedin.com/in/evan-bonsignori-33167787" target="_blank" class="icoLinkedin">
+                            <i class="fa fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                          <a href="https://www.instagram.com/ebonsignori/" target="_blank" class="icoInstagram">
+                            <i class="fa fa-instagram"></i></a>
+                        </li>
+                      </ul>
+              </div>
+              <div class="col-md-4">
+                  <ul class="list-inline quicklinks">
+                      <li><a href="/blog">Blog</a>
+                      </li>
+                      <li><a href="/acknowledgements">Acknowledgements</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+    <script type="text/javascript" src="{% static 'home/js/vendor/bootstrap3.min.js' %}"></script>
+     <script type="text/javascript" src="{% static 'home/js/home.js' %}"></script>
+</body>
+</html>

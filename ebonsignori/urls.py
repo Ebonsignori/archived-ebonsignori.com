@@ -1,23 +1,11 @@
-"""ebonsignori URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconfT
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views
 from django.conf import settings
 from markdownx import urls as markdownx
+from django.conf.urls import ( # Import error pages
+handler400, handler403, handler404, handler500
+)
 
 urlpatterns = [
     url(r'^', include('home.urls')),
@@ -28,7 +16,13 @@ urlpatterns = [
     url(r'^markdownx/', include(markdownx)),
 ]
 
+# Error Pages
+handler400 = 'ebonsignori.views.handle_400'
+handler403 = 'ebonsignori.views.handle_403'
+handler404 = 'ebonsignori.views.handle_404'
+handler500 = 'ebonsignori.views.handle_500'
 
-if settings.DEBUG:
-    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-    urlpatterns += staticfiles_urlpatterns()
+
+# Development server static serving
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()

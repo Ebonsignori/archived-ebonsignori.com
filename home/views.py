@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from .forms import ContactForm
-from .models import PortfolioItem
+from .models import PortfolioItem, PortfolioCategory, Acknowledgements
 from django.shortcuts import redirect
 from django.core.mail import send_mail
 
 
 def index(request):
     portfolio_items = PortfolioItem.objects.all()
+    portfolio_categories = PortfolioCategory.objects.all()
     form_class = ContactForm
 
     # new logic
@@ -31,4 +32,11 @@ def index(request):
 
             return render(request, 'home/home.html', {'form': form, 'was_sent': was_sent})
 
-    return render(request, 'home/home.html', {'form': form_class, 'portfolio_items': portfolio_items})
+    return render(request, 'home/home.html', {'form': form_class,
+                                              'portfolio_items': portfolio_items,
+                                              'portfolio_categories': portfolio_categories})
+
+
+def acknowledgements(request):
+    acknowledgements = Acknowledgements.objects.all()
+    return render(request, 'home/acknowledgements.html', {'acknowledgements': acknowledgements})

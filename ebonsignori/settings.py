@@ -76,6 +76,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Database
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'BlogDatabase'),
+    }
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -124,5 +134,5 @@ EMAIL_HOST_PASSWORD = 'Kvothe586843'
 EMAIL_USE_TLS = True
 
 # Media Files
-MEDIA_ROOT= os.path.join(BASE_DIR, 'static/media')
-MEDIA_URL='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads/')
+MEDIA_URL ='/uploads/'

@@ -1,0 +1,10 @@
+{% extends "blog/base.html" %}
+
+{% block page_title %}404 Error{% endblock %}
+{% block title %}404{% endblock %}
+{% block subtitle %}{% if category %}{% else %}Sorry what you were looking for wasn't found :({% endif %}{% endblock %}
+{% block meta %}
+    <span class="meta">
+        <a href="/"> Click here if you'd like to return to the landing page </a>
+    </span>
+{% endblock %}
