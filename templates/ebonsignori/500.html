@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block page_title %}500 Error{% endblock %}
+{% block title %}500 Error{% endblock %}
+{% block subtitle %}{% if category %}{% else %}Sorry, something is going on with my server.
+<br/> If this isn't the first time you've seen this email, please contact me with the details of the error at evanabonsignori@gmail.com. <br/>
+Thank You.{% endif %}{% endblock %}
+{% block meta %}
+    <span class="meta">
+        <br />
+        <a style="color: white;" href="/"> Click here if you'd like to return to the landing page </a>
+    </span>
+{% endblock %}

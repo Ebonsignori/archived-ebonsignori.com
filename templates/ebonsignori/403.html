@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{% block page_title %}403 Error{% endblock %}
+{% block title %}403 Error{% endblock %}
+{% block subtitle %}{% if category %}{% else %}Forbidden address!
+    <br /> Please don't try to break into my system. This is a simple personal website and not a profitable business worth attacking. {% endif %}{% endblock %}
+{% block meta %}
+    <span class="meta">
+        <br />
+        <a style="color: white;" href="/"> Click here if you'd like to return to the landing page </a>
+    </span>
+{% endblock %}

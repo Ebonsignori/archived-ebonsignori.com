@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-
+    {% block page_title %}Comment - {% if post.title %}{{ post.title }}{% endif %}{% endblock %}
     {% block title %}New Comment{% endblock %}
     {% block subtitle %}<h2>{% if post.title %}On {{ post.title }}{% endif %}</h2>{% endblock %}
 

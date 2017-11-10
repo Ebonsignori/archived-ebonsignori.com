@@ -24,5 +24,6 @@ handler500 = 'ebonsignori.views.handle_500'
 
 
 # Development server static serving
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-urlpatterns += staticfiles_urlpatterns()
+if settings.DEBUG:
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()

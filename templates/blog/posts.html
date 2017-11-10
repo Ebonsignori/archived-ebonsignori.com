@@ -12,10 +12,10 @@
                 {% if category.title == cat.title %}{{ cat.title }}
                 {% endif %}
           {% endfor %}
-          {% else %}Select A Category
+          {% else %}Category
           {% endif %}
-
           </button>
+
           <div class="dropdown-content">
           {% for cat in categories %}
               {% if category %}
@@ -29,6 +29,7 @@
           </div>
         </nav>
 
+    {% if user.is_authenticated %}
         {% for cat in categories %}
                 {% if category.title == cat.title %}
                     <br />
@@ -36,6 +37,7 @@
                     <a class="btn btn-default options-btn remove" href="{% url 'category_delete' pk=category.pk %}">Delete Category</a>
                 {% endif %}
           {% endfor %}
+    {% endif %}
     </span>
 {% endblock %}
 

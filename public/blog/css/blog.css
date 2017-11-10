@@ -346,6 +346,64 @@ form .form-group:first-child .floating-label-form-group {
   background-color: grey;
 }
 
+.comment-btn {
+    text-align: center;
+    margin: auto;
+    display: block;
+    width: fit-content;
+    background-color: white;
+    color: black;
+    border: none !important;
+}
+
+.comment-btn:hover {
+    color: black;
+    background: #a0a0a0;
+}
+
+/* Comments in post */
+.comment-separator {
+    position: relative;
+    padding: 35px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    background: no-repeat center center;
+  background-color: #53595F;
+  background-attachment: scroll;
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+comment-separator-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #212529;
+    opacity: 0.5;
+    z-index: 9999;
+}
+
+.comment {
+    border: 1px solid #53595F;
+    margin-top: 25px;
+    padding: 5px;
+}
+
+.post-info {
+    color: white;
+    font-size: 24px;
+  font-weight: 300;
+  line-height: 1.1;
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 
 /* Markdownx form editor */
 .markdownx-editor {
@@ -355,7 +413,6 @@ form .form-group:first-child .floating-label-form-group {
   width: 35%;
   margin-right: 5%;
   font-size: .6em;
-  font: 
 }
 
 .markdownx-preview {
@@ -387,4 +444,66 @@ form .form-group:first-child .floating-label-form-group {
 
 .edit-form-wrap {
   text-align: center;
+}
+
+.edit-form-wrap-comment {
+  text-align: center;
+}
+
+.edit-form-wrap-comment .markdownx-editor {
+  height: 250px;
+    resize: none;
+}
+
+.edit-form-wrap-comment .markdownx-preview {
+    height: 250px;
+    resize: none;
+}
+
+/* Category Dropdown */
+.dropbtn {
+    background-color: #fff4f7;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    margin-top: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #f1f1f1;
 }

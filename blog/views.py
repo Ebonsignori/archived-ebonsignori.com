@@ -166,6 +166,7 @@ def change_category(request, slug):
     return render(request, 'blog/posts.html', {'posts': posts, 'category': category[0], 'categories': categories})
 
 
+@login_required
 def category_delete(request, pk):
     category = get_object_or_404(Category, pk=pk)
     # Fetch posts with given category and send them to drafts

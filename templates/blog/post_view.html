@@ -1,5 +1,7 @@
 {% extends 'blog/base.html' %}
 
+
+{% block page_title %}{{ post.title }}{% endblock %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block subtitle %}<h2>{{ post.subtitle }}</h2>{% endblock %}
 {% block meta %}
