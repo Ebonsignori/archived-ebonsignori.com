@@ -203,8 +203,8 @@
           <!-- Contact Form -->
         <div class="container">
             <div class="row">
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3">
-                      <form id="contact-form" class="form" action="#contact-section" method="POST" role="form">
+              <div style="float: none; margin: 0 auto !important;" class="col-lg-10 col-md-8 col-sm-6 col-xs-10">
+                      <form id="contact-form" class="form text-center" action="#contact-section" method="POST" role="form">
                           {% csrf_token %}
                           {{ form.non_field_errors }}
 
@@ -245,14 +245,16 @@
                </div>
             </div>
         <div>
+    <br />
     <hr />
+    <br />
       <!-- Contact info hidden in javascript to prevent spam bots -->
-            <h2 class="text-center">Or View Evan's Contact Info</h2>
+            <h2 class="text-center">My Contact Info</h2>
           <div id="contact-show" class="text-center">
-              <h3><em>Hidden From Bots, Click to Show</em></h3>
+              <h3><em>Hidden From Bots</em></h3>
             <p style="margin-top: 15px;"> <br />
-                <button style="margin-top: -15px;" class="btn btn-start-order"
-                onclick="showContactInfo()">Contact Information</button>
+                <button style="margin-top: -25px; font-size: 1.3em !important;" class="btn btn-start-order"
+                onclick="showContactInfo()">Click To Show</button>
             </p>
           </div>
   </section>
