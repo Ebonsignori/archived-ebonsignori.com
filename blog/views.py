@@ -130,17 +130,18 @@ def add_comment_to_post(request, slug):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
+
+            send_mail(
+                'New Comment on \"' + str(post) + '\"',
+                str(post.comments.last().text),
+                'evan@ebonsignori.com',
+                ['evanabonsignori@gmail.com'],
+                fail_silently=False,
+            )
+
             return redirect('post_view', slug=post.slug)
     else:
         form = CommentForm()
-
-    send_mail(
-        'New Comment on \"' + str(post) + '\"',
-        str(post.comments.last().text),
-        'evan@ebonsignori.com',
-        ['evanabonsignori@gmail.com'],
-        fail_silently=False,
-    )
 
     return render(request, 'blog/add_comment_to_post.html', {'form': form, 'post': post})
 
