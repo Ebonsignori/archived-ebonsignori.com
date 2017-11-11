@@ -698,6 +698,38 @@ p {
 }
 
 /* Contact form */
+.form input::-webkit-input-placeholder {
+   text-align: center;
+}
+
+.form input:-moz-placeholder { /* Firefox 18- */
+   text-align: center;
+}
+
+.form input::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;
+}
+
+.form textarea:-ms-input-placeholder {
+   text-align: center;
+}
+
+.form textarea::-webkit-input-placeholder {
+   text-align: center;
+}
+
+.form textarea:-moz-placeholder { /* Firefox 18- */
+   text-align: center;
+}
+
+.form textarea::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;
+}
+
+.form textarea:-ms-input-placeholder {
+   text-align: center;
+}
+
 textarea {
 	resize: none !important;
 }
