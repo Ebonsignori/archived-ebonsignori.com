@@ -278,24 +278,24 @@ function ChangeDirectoryCommand(input) {
       waitingFor = "cd .";
       break;
     case "..":
-      history.go(-1);
+      window.history.back();
       NewQuery();
       break;
     case "home":
-      window.location = "#background-slider";
-      NewQuery();
+      location.href = "#";
+      location.href = "#background-slider";
       break;
     case "blog":
       window.location = "blog";
       NewQuery();
       break;
     case "portfolio":
-      window.location = "#portfolio";
-      NewQuery();
+      location.href = "#";
+      location.href = "#portfolio";
       break;
     case "contact":
-      window.location = "#contact-section";
-      NewQuery();
+      location.href = "#";
+      location.href = "#contact-section";
       break;
     case "facebook":
       window.location = "https://www.facebook.com/ebonsignori";
