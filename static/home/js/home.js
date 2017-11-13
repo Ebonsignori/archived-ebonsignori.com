@@ -216,10 +216,10 @@ var typeSpeed = 45;
 var pauseBetween = 300;
 var quitIntro = false;
 var unlockButtons = true;
-var firstMessage = "Hello,";
-var secondMessage = "Welcome to the About Evan Bonsignori Terminal!";
-var thirdMessage = "To use the terminal, type out a supported command and press enter.";
-var fourthMessage = "For example, here is the \'commands\' command,";
+var firstMessage = "Hello and welcome to the About Evan Bonsignori Terminal!";
+var secondMessage = "This terminal acts as my \"about me\" section.";
+var thirdMessage = "To use it, type a supported command and press enter.";
+var fourthMessage = "For instance, this is how you would view the supported commands:";
 var commandMessage = "commands";
 var finalMessage = "If you'd rather see a more traditional about me page, press the traditional button, otherwise press the terminal button.";
 
