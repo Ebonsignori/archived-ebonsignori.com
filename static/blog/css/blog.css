@@ -415,6 +415,40 @@ comment-separator-overlay {
     padding: 5px;
 }
 
+/* Add Comments */
+.add-comment-form {
+  display: block;
+  margin: 0 auto;
+  padding: 7px;
+  border: 3px solid black;
+}
+.add-comment {
+  text-align: center;
+}
+
+.add-comment input {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid black;
+}
+
+.add-comment textarea {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid black;
+  overflow-x: hidden;
+  overflow-y: auto;
+  resize: vertical;
+}
+
+.add-comment-label {
+  display: block;
+}
+
+/* End Comments */
+
 .post-info {
     color: white;
     font-size: 24px;

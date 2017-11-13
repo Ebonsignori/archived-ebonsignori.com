@@ -50,14 +50,16 @@
             <br />
         </div>
 
-        <a class="btn btn-default options-btn comment-btn" href="{% url 'add_comment_to_post' slug=post.slug %}">Add comment</a>
+        <a class="btn btn-default options-btn comment-btn" href="#new-comment">Add comment</a>
      </div>
 
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8 mx-auto">
+            {% if comments %}
+            <h3 class="text-center">Comments</h3>
+            {% endif %}
              {% for comment in comments %}
-
                   {% if user.is_authenticated or comment.approved_comment %}
                         <div class="comment">
                             <div class="date">Posted on {{ comment.created_date }}</div>
@@ -68,14 +70,42 @@
                             By <strong>{{ comment.author }}</strong>
                             <br />
                             <div class="container">
-                            {% autoescape off %}{{ comment.text |safe }}{% endautoescape %}
+                            {% autoescape off %}{{ comment.comment_body |safe }}{% endautoescape %}
                             </div>
+                        {% if user.is_authenticated %}
+                        <a class="btn btn-default options-btn edit inline-btn" href="{% url 'comment_edit' slug=post.slug pk=comment.pk %}">Edit</a>
+                            {% endif %}
                         </div>
 
                  {% endif %}
 
             {% endfor %}
-             <a class="btn btn-default options-btn comment-btn inline-btn" style="background-color: lightgrey; margin-top: 25px;" href="{% url 'add_comment_to_post' slug=post.slug %}">Add comment</a>
+
+            <br /><hr />
+            <h3 class="text-center" id="new-comment">New Comment</h3>
+                <form class="add-comment-form" method="POST" action="{{ request.path }}#new-comment" role="form">
+                    {% csrf_token %}
+                          {{ comment_form.non_field_errors }}
+
+                          <div class="add-comment">
+                              <label class="add-comment-label" for="{{ comment_form.author.id_for_label }}"><em>Your Name</em></label>
+                              {{ comment_form.author.errors }}
+                              {{ comment_form.author}}
+                          </div>
+                        <br />
+                        <div class="add-comment">
+                            <label class="add-comment-label" for="{{ comment_form.comment_body.id_for_label }}"><em>Your Comment</em></label>
+                                  {{ comment_form.comment_body.errors }}
+                                  {{ comment_form.comment_body}}
+                              </div>
+                    <button class="btn btn-default options-btn comment-btn inline-btn" style="background-color: lightgrey; margin-top: 25px;" type="submit" style="color:black">Post Comment</button>
+                </form>
+            {% if is_posted %}
+                <div style="text-align: center;">
+                    <strong style="color:green;"> Comment Submitted! </strong> <br />
+                    <em>Your comment won't show up because it pending approval.</em>
+                </div>
+            {% endif %}
             </div>
         </div>
      </div>

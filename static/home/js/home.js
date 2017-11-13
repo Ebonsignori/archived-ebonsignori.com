@@ -138,7 +138,7 @@ function centerProfile() {
 // disguise my information from bots.
 function showContactInfo() {
       var info =
-            /*And2 Some More */"<div><p> Email: </p> <p><a h" +
+            /*And2 Some More */"<p class='contact-email'> Email <br/><a h" +
        /*Comment Mid Pase */  "re" + "f='ma" + "i" + "lto:ev" /*Comment Mid
         *  Pase */ + "an" + "abo" +/*@gmail.com */ /*Gotcha.com */
     "nsi" + "gn" + /*Comment Mid Pase */ "o" + "ri@gm" + "ail" + ".com"
@@ -149,19 +149,19 @@ function showContactInfo() {
    /*And Some More */"ail" + //Random Comments For Parsing Errors24822
             /*And Some More */".com </a> </p> " //Random Comments For Parsing Errors24232
   /*And Some More */ + //Random Comments For Parsing Errors
-            /*And Some More */ "<p> Ph" + "on" //Random Comments For Parsing Errors
-  /*And Some More */ + /*@gmail.com */ "e Nu" //Random Comments For Parsing Errors646
-            /*And Some More */ + "mber" //Random Comments For Parsing Errors326
-            /*And Some More */ + ": </p><p><a href='tel:1-9" + "12"
+            /*And Some More */ "<p class='contact-phone'> Mo" + "b" //Random Comments For Parsing Errors
+  /*And Some More */ + /*@gmail.com */ "i" //Random Comments For Parsing Errors646
+            /*And Some More */ + "le" //Random Comments For Parsing Errors326
+            /*And Some More */ + ": <br/><a href='tel:1-9" + "12"
                     + "-5"
                     + "0" + "8-3" + "34"
                     + "5 ' > (9"
             /*And Some More */ + "1" + /*Phone: (921)-555-5256 */
-            "2-" //Random Comments For Parsing Errors245
+            "2)-" //Random Comments For Parsing Errors245
             /*And Some More */ + "50" //Random Comments For Parsing Errors25624
             /*And Some More */ + "8-3" //Random Comments For Parsing Errors854
             /*And Some More */ + "345" //Random Comments For Parsing Errors24523
-            /*And Some More */ + ") </a> </p> </div>";//Random Comments
+            /*And Some More */ + "</a> </p>";//Random Comments
             //For Parsing Errors
 
             $('#contact-show').fadeOut("slow", function(){
@@ -607,7 +607,7 @@ function FinalMessage() {
                   unlockScreen = true;
                   unlockButtons = true;
                   $('.enter').last().append("<br/> <br/>" +
-                  "<div class=\'about-type-wrap\'><button class=\'about-type-btn\' onclick=\'ClearTerminal();\'>Terminal</button> <button class='about-type-btn' onclick=\'MinimizeTerminal();\'>Traditional</button></div>" +
+                  "<div class=\'about-type-wrap\'><button class=\'about-type-btn\' onclick=\'ClearTerminal();\'>Terminal</button> <button class='about-type-btn' onclick=\'MinimizeTerminal(true);\'>Traditional</button></div>" +
                   "<br /> You can view the traditional about me page at any time by pressing the yellow minimize button in the top left of this terminal.");
                   }, pauseBetween);
           }
@@ -657,7 +657,10 @@ function ResetTerminal() {
     TerminalIntro();
 }
 
-function MinimizeTerminal() {
+function MinimizeTerminal(clear) {
+    if (clear) {
+        ClearTerminal();
+    }
     $('#shell').toggleClass('minimize');
 }
 

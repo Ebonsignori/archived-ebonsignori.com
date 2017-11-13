@@ -14,9 +14,9 @@ urlpatterns = [
     url(r'^deleted/$', views.post_deleted_list, name='post_deleted_list'),
     url(r'^category/new/$', views.category_new, name='category_new'),
     url(r'^category/(?P<slug>[-\w]+)/edit/$', views.category_edit, name='category_edit'),
-    url(r'^post/(?P<slug>[-\w]+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     url(r'^comment/(?P<pk>\d+)/approve/$', views.comment_approve, name='comment_approve'),
     url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
+    url(r'^comment/(?P<slug>[-\w]+)/edit-comment/(?P<pk>\d+)/$', views.comment_edit, name='comment_edit'),
     url(r'^category/(?P<slug>[-\w]+)/$', views.change_category, name='change_category'),
     url(r'^category/(?P<pk>\d+)/delete/$', views.category_delete, name='category_delete'),
 ]

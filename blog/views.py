@@ -18,11 +18,31 @@ def post_list(request):
 
 def post_view(request, slug):
     post = get_object_or_404(Post, slug=slug)
+
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_obj = comment_form.save(commit=False)
+            comment_obj.save_to_post(post.pk)
+
+            send_mail(
+                'New Comment on \"' + str(post) + '\"',
+                str(post.comments.last().comment_body),
+                'evan@ebonsignori.com',
+                ['evanabonsignori@gmail.com'],
+                fail_silently=False,
+            )
+
+            comments = post.comments.all()
+            post.text = markdownify(post.text)
+            return render(request, 'blog/post_view.html',
+                          {'post': post, 'comments': comments, 'comment_form': comment_form, 'is_posted': True})
+    else:
+        comment_form = CommentForm()
+
     comments = post.comments.all()
-    for comment in comments:
-        comment.text = markdownify(comment.text)
     post.text = markdownify(post.text)
-    return render(request, 'blog/post_view.html', {'post': post, 'comments': comments})
+    return render(request, 'blog/post_view.html', {'post': post, 'comments': comments, 'comment_form': comment_form})
 
 
 @login_required
@@ -122,28 +142,18 @@ def category_edit(request, slug):
     return render(request, 'blog/category_edit.html', {'form': form, 'category': category})
 
 
-def add_comment_to_post(request, slug):
+def comment_edit(request, pk, slug):
     post = get_object_or_404(Post, slug=slug)
+    comment = get_object_or_404(Comment, pk=pk)
     if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.save()
-
-            send_mail(
-                'New Comment on \"' + str(post) + '\"',
-                str(post.comments.last().text),
-                'evan@ebonsignori.com',
-                ['evanabonsignori@gmail.com'],
-                fail_silently=False,
-            )
-
+        comment_form = CommentForm(request.POST, instance=comment)
+        if comment_form.is_valid():
+            comment_form.save()
             return redirect('post_view', slug=post.slug)
     else:
-        form = CommentForm()
+        comment_form = CommentForm(instance=comment)
 
-    return render(request, 'blog/add_comment_to_post.html', {'form': form, 'post': post})
+    return render(request, 'blog/edit_comment.html', {'comment_form': comment_form, 'post': post})
 
 
 @login_required
