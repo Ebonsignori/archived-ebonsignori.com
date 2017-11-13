@@ -3,7 +3,7 @@
 
     {% block title %}{% if post.title %}Editing: {{ post.title }}{% else %}New Post{% endif %}{% endblock %}
     {% block subtitle %}<h2>{% if post.title %}{{ post.subtitle }}{% else %}Creating a New Post As {{ user.get_username }}{% endif %}</h2>{% endblock %}
-
+    {% block main_image %}{% if post.header_image %}{{ MEDIA_URL }}{{ post.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
     {% block meta %}
         {% if post.title %}
         <span class="meta">
@@ -30,7 +30,7 @@
 
 {% block content %}
     <div class="edit-form-wrap">
-    <form class="edit-form" method="POST" action="">{% csrf_token %}
+    <form class="edit-form" method="POST" enctype="multipart/form-data" action="">{% csrf_token %}
         {{ form.as_ul }}
         <button type="submit" class="save btn btn-default options-btn publish" style="color:black">Save</button>
     </form>

@@ -4,6 +4,7 @@
 {% block page_title %}{{ post.title }}{% endblock %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block subtitle %}<h2>{{ post.subtitle }}</h2>{% endblock %}
+{% block main_image %}{% if post.header_image %}{{ MEDIA_URL }}{{ post.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
 {% block meta %}
     <span class="meta">
         Posted by {{ post.author }} on

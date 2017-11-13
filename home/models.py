@@ -29,7 +29,7 @@ class PortfolioItem(models.Model):
     caption_title = models.CharField(max_length=500)
     caption_subtitle = models.CharField(max_length=500)
 
-    category = models.ForeignKey(PortfolioCategory, null=True)
+    category = models.ForeignKey(PortfolioCategory, on_delete=models.SET_NULL, null=True)
 
     created_date = models.DateTimeField(
             default=timezone.now)

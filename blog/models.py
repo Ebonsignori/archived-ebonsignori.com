@@ -8,6 +8,8 @@ class Post(models.Model):
     author = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=200, null=True, blank=True)
+    preview = models.ForeignKey('blog.PostDisplayImage', null=True, blank=True, related_name='preview_image')
+    header_image = models.ImageField(null=True, blank=True)
     category = models.ForeignKey('blog.Category', on_delete=models.SET_NULL, null=True, blank=True)
     text = MarkdownxField()
     created_date = models.DateTimeField(
@@ -23,7 +25,10 @@ class Post(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('post_view', None, {'slug': self.slug})
+        return 'post_view', None, {'slug': self.slug}
+
+    def get_preview_image(self):
+        return self.preview.image
 
     def publish(self):
         self.is_published = True
@@ -34,6 +39,15 @@ class Post(models.Model):
         self.slug = slugify(self.title)
         self.updated_date = timezone.now()
         super(Post, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+
+class PostDisplayImage(models.Model):
+    title = models.CharField(max_length=100)
+    attached_to = models.CharField(max_length=100, unique=True)
+    image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.title

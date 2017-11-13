@@ -3,6 +3,7 @@
 {% block page_title %}Evan Bonsignori's Blog{% endblock %}
 {% block title %}Blog{% endblock %}
 {% block subtitle %}{% if category %}{% else %}Recent Posts{% endif %}{% endblock %}
+{% block main_image %}{% if post.main_image %}{{ post.main_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
 {% block meta %}
     <span class="meta">
         <nav class="dropdown">
@@ -55,11 +56,15 @@
                   </h2>
                   <h3 class="post-subtitle">
                     {{ post.subtitle }} <br />
-                      Category: {{ post.category }}
                   </h3>
+                     {% if post.preview %}
+                    <img src="{{ MEDIA_URL }}{{ post.get_preview_image.url }}" class="post-image" />
+                 {% endif %}
                 </a>
-                <p class="post-meta">Posted by
-                  <a href="#">{{ post.author }}</a>
+                <p class="post-meta">
+                    Category: <a href="{% url 'change_category' slug=post.category.slug %}"> {{ post.category }}</a> <br />
+                    Posted by
+                  <a href="/#about-section">{{ post.author }}</a>
                   on {{ post.published_date|date:"F j, Y" }}</p>
                  {% if user.is_authenticated %}
                     <a class="btn btn-default options-btn inline-btn edit" href="{% url 'post_edit' slug=post.slug %}">Edit Post</a>

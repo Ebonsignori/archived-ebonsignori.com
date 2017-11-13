@@ -532,3 +532,9 @@ comment-separator-overlay {
   width: 160px;
   border-radius: 0;
 }
+
+/* Blog posts callable css */
+.center-image {
+  display: block;
+  margin: 0 auto;
+}

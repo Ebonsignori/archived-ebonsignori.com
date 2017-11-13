@@ -112,9 +112,9 @@ STATICFILES_DIRS = [
 ]
 
 # Where markdownx stores images
-MARKDOWNX_MEDIA_PATH = os.path.join(BASE_DIR, 'public/static/markdownx/images')
-MARKDOWNX_UPLOAD_URLS_PATH = os.path.join(BASE_DIR, 'public/static/markdownx/images')
-MARKDOWNX_URLS_PATH = os.path.join(BASE_DIR, '/markdownx/images')
+# MARKDOWNX_MEDIA_PATH = os.path.join(BASE_DIR, 'public/static/markdownx')
+# MARKDOWNX_UPLOAD_URLS_PATH = os.path.join(BASE_DIR, 'public/static/markdownx')
+# MARKDOWNX_URLS_PATH = os.path.join(BASE_DIR, 'static/images/markdownx')
 MARKDOWNX_EDITOR_RESIZABLE = True
 MARKDOWNX_MARKDOWN_EXTENSIONS = [
     'markdown.extensions.extra',
@@ -125,6 +125,13 @@ MARKDOWNX_MARKDOWN_EXTENSIONS = [
 # Login Options
 LOGIN_REDIRECT_URL = '/blog/'
 LOGOUT_REDIRECT_URL = '/blog/'
+
+# Email
+EMAIL_HOST = 'sub5.mail.dreamhost.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'evan@ebonsignori.com'
+EMAIL_HOST_PASSWORD = 'Kvothe586843'
+EMAIL_USE_TLS = True
 
 # Media Files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads/')
