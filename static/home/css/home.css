@@ -1,7 +1,6 @@
 body,html {
   height: 100%;
   font-family: roboto;
-  overflow-x: hidden;
 }
 
 .text-muted {
@@ -605,8 +604,24 @@ p {
 }
 
 #main:before {
-  content: "Hello User, Welcome To The About Evan Bonsignori Terminal. Type \"commands\" for a list of supported commands";
+  content: "Type \"commands\" for a list of supported commands";
   display: block;
+}
+
+.quit-intro-btn {
+    position: absolute;
+    top: 40px;
+    width: 700px;
+    transition: all 0.3s !important;
+    color: white;
+    padding: 5px;
+    border: 1px solid white;
+    background: black;
+}
+
+.quit-intro-btn:hover {
+    transition: all 0.3s !important;
+    background: slategrey;
 }
 
 .enter {
@@ -681,6 +696,26 @@ p {
   min-height: 0 !important;
   height: 35px !important;
   overflow: hidden !important;
+}
+
+.about-type-wrap {
+text-align: center;
+}
+
+.about-type-btn {
+    display: inline-block;
+    transition: all 0.3s !important;
+    color: white;
+    padding: 10px;
+    border: 1px solid white;
+    background: black;
+    border-radius: 15px;
+    font-weight: 900;
+}
+
+.about-type-btn:hover {
+    transition: all 0.3s !important;
+    background: slategrey;
 }
 
 /* End about terminal css*/

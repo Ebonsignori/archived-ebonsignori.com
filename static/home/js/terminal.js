@@ -8,6 +8,17 @@ var message_email;
 var message_subject;
 var message_content;
 
+// Intro Messages
+var typeSpeed = 45;
+var pauseBetween = 300;
+var quitIntro = false;
+var firstMessage = "Hello,";
+var secondMessage = "Welcome to the About Evan Bonsignori Terminal!";
+var thirdMessage = "To use the terminal, type out a supported command and press enter.";
+var fourthMessage = "For example, here is the \'commands\' command,";
+var commandMessage = "commands";
+var finalMessage = "If you'd rather see a more traditional about me page, press the traditional button, otherwise press the terminal button.";
+
 /* Stick taskbar to top of div */
 $('#upper').each(function(){
 
@@ -132,8 +143,10 @@ $('#main').keyup(function(e) {
 
           // reset - Reset Terminal
        case "reset":
-          ClearTerminal();
-          break;
+       case "restart":
+       case "intro":
+         ResetTerminal();
+         break;
 
        // uname - Site description
        case "uname":
@@ -235,6 +248,160 @@ function NewQuery() {
   return;
 }
 
+// Introduction that runs through a series of introduction messages
+function TerminalIntro() {
+    quitIntro = false;
+    $('#main').html("<button class=\"quit-intro-btn\" onclick=\"QuitIntro();\">Click to Skip Introduction</button> <br/> <span class=\"fore\"></span><span class=\"accent\"> $ </span> <div class=\"enter\" id=\"query\" contenteditable=\"true\"></div>");
+    (function printMsg (i) {
+        if (quitIntro) {
+            quitIntro = false;
+            ClearTerminal();
+            return;
+        }
+       setTimeout(function () {
+          $('.enter').last().append(firstMessage.charAt(i));
+          i++;
+          if (i < firstMessage.length) {
+              printMsg(i);
+          } else {
+              $('.enter').last().append("<br/>");
+              setTimeout(function () {
+                  SecondMessage();
+              }, pauseBetween);
+          }
+       }, typeSpeed)
+    })(0);
+}
+
+function SecondMessage() {
+    $('.enter').append("<span class=\"accent\"> $ </span>");
+     (function printMsg (i) {
+         if (quitIntro) {
+            quitIntro = false;
+            ClearTerminal();
+            return;
+        }
+       setTimeout(function () {
+          $('.enter').last().append(secondMessage.charAt(i));
+          i++;
+          if (i < secondMessage.length) {
+              printMsg(i);
+          } else {
+               $('.enter').last().append("<br/>");
+              setTimeout(function () {
+                  ThirdMessage();
+              }, pauseBetween);
+          }
+       }, typeSpeed)
+    })(0);
+}
+
+function ThirdMessage() {
+    $('.enter').append("<span class=\"accent\"> $ </span>");
+     (function printMsg (i) {
+         if (quitIntro) {
+            quitIntro = false;
+            ClearTerminal();
+            return;
+        }
+       setTimeout(function () {
+          $('.enter').last().append(thirdMessage.charAt(i));
+          i++;
+          if (i < thirdMessage.length) {
+              printMsg(i);
+          } else {
+               $('.enter').last().append("<br/>");
+              setTimeout(function () {
+                  FourthMessage();
+              }, pauseBetween);
+          }
+       }, typeSpeed)
+    })(0);
+}
+
+function FourthMessage() {
+    $('.enter').append("<span class=\"accent\"> $ </span>");
+     (function printMsg (i) {
+         if (quitIntro) {
+            quitIntro = false;
+            ClearTerminal();
+            return;
+        }
+       setTimeout(function () {
+          $('.enter').last().append(fourthMessage.charAt(i));
+          i++;
+          if (i < fourthMessage.length) {
+              printMsg(i);
+          } else {
+               $('.enter').last().append("<br/>");
+               NewQuery();
+              setTimeout(function () {
+                  CommandMessage();
+              },  pauseBetween); // Wait 3 seconds for reading command output
+          }
+       }, typeSpeed)
+    })(0);
+}
+
+function CommandMessage() {
+     (function printMsg (i) {
+         if (quitIntro) {
+            quitIntro = false;
+            ClearTerminal();
+            return;
+        }
+       setTimeout(function () {
+          $('.enter').last().append(commandMessage.charAt(i));
+          i++;
+          if (i < commandMessage.length) {
+              printMsg(i);
+          } else {
+               $('.enter').last().append("<br/> <br/>");
+               $('.enter').last().append("Commands Supported: <br> <ul> <li>whoami</li> <li>find</li> <li>history</li> <li>uname</li> <li>pwd </li> <br> <li>ls</li> <li>cd</li> <li>mail</li> <li>reset</li> <li>clear</li> <br> <li>commands</li>  <li>man</li> </ul>" + "<br/><br/>");
+              setTimeout(function () {
+                  FinalMessage()
+                  }, 2000);
+          }
+       }, typeSpeed)
+    })(0);
+}
+
+function FinalMessage() {
+     (function printMsg (i) {
+         if (quitIntro) {
+            quitIntro = false;
+            ClearTerminal();
+            return;
+        }
+       setTimeout(function () {
+          $('.enter').last().append(finalMessage.charAt(i));
+          i++;
+          if (i < finalMessage.length) {
+              printMsg(i);
+          } else {
+              setTimeout(function () {
+                  quitIntro = true;
+                  $('.enter').last().append("<br/> <br/>" +
+                  "<div class=\'about-type-wrap\'><button class=\'about-type-btn\' onclick=\'ClearTerminal();\'>Terminal</button> <button class='about-type-btn' onclick=\'MinimizeTerminal();\'>Traditional</button></div>" +
+                  "<br /> You can view the traditional about me page at any time by pressing the yellow minimize button in the top left of this terminal.");
+                  }, pauseBetween);
+          }
+       }, typeSpeed)
+    })(0);
+}
+
+function QuitIntro() {
+    if (quitIntro == true) {
+        ClearTerminal();
+    } else {
+       quitIntro = true;
+    }
+}
+
+function getIntroStatus() {
+    return quitIntro;
+}
+
 // Clear the previous outputs of the terminal window
 function ClearTerminal() {
   $('#main').html("<span class=\"fore\">about@ebonsignori.com</span>:<span class=\"accent\"> $ </span> <div class=\"enter\" id=\"query\" contenteditable=\"true\"></div>");
@@ -264,8 +431,11 @@ function ClearTerminal() {
 
 // Reset terminal to first scroll-by state
 function ResetTerminal() {
-    /* TODO implement type.js for terminal intro and implement reset to reset intro */
-ClearTerminal();
+    TerminalIntro();
+}
+
+function MinimizeTerminal() {
+    $('#shell').toggleClass('minimize');
 }
 
 // Commands that require extra logic
@@ -402,7 +572,9 @@ function ManualCommand(input) {
 
       // man reset
       case "reset":
-      OutputQuery("Resets the terminal <br><br> There are no alternative inputs for this command.  <br>");
+      OutputQuery("Resets the terminal to the introduction screen. The red close button in the top left of this terminal serves the same function." +
+            "<br> <br> Input Alternatives: <br> " +
+          "<ul><li><em>intro</em></li> <li><em>restart</em></li></ul>");
       break;
 
       // man clear
@@ -451,8 +623,7 @@ $('#toolbar-red').click(function() {
 });
 
 $('#toolbar-yellow').click(function() {
-  $('#shell').toggleClass('minimize');
-  console.log("min called");
+  MinimizeTerminal();
 });
 
 $('#toolbar-green').click(function() {
