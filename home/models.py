@@ -31,6 +31,8 @@ class PortfolioItem(models.Model):
 
     category = models.ForeignKey(PortfolioCategory, on_delete=models.SET_NULL, null=True)
 
+    order = models.IntegerField(null=True, unique=True)
+
     created_date = models.DateTimeField(
             default=timezone.now)
     updated_date = models.DateTimeField(

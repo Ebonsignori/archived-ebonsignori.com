@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 
 
 def index(request):
-    portfolio_items = PortfolioItem.objects.all()
+    portfolio_items = PortfolioItem.objects.all().order_by('order')
     portfolio_categories = PortfolioCategory.objects.all()
     form_class = ContactForm
 

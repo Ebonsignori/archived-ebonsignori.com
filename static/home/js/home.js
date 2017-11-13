@@ -35,9 +35,10 @@ $(window).resize(function() {
 });
 
 
-// Scroll to about section
+// Scroll to about section if passing by user scroll or smooth scroll to it
 var $root = $('html, body');
 var trigger = false;
+var contactInfoShown = false;
 var unlockScreen = false;
 $(window).scroll(function () {
     if (!unlockScreen) {
@@ -49,30 +50,47 @@ $(window).scroll(function () {
             return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
         }
 
-        if (elementScrolled('#portfolio')) {
+        if (elementScrolled('#center-about-scroll')) {
             if (!trigger) {
                 TerminalIntro();
                 trigger = true;
+                $root.animate({ scrollTop: $('#about-section').offset().top}, 500, 'linear');
             }
 
             var fixed = document.getElementById('about-section');
             fixed.addEventListener('touchmove', function (e) {
                 e.preventDefault();
             }, false);
-            fixed.scrollIntoView();
+            // fixed.scrollIntoView();
         }
+    }
+
+    if (elementScrolled('#contact-show') && !contactInfoShown) {
+        contactInfoShown = true;
+        showContactInfo();
     }
 });
 
 
 // Smooth Scroll
-
 $('.smooth-scroll').on('click', function(e) {
   if ( $('#overlay').hasClass('open') ) {
       $('#toggle').toggleClass('active');
       $('#overlay').toggleClass('open');
   }
-  $root.animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+  // Make sure not to lock screen at about section
+  if ($(this).attr('href') == "#about-section") {
+      $root.animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+  } else if (!unlockScreen && $(this).attr('href') != "#about-section") {
+      unlockScreen = true;
+      $root.animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+      setTimeout(function () {
+                  unlockScreen = false;
+              }, 500);
+  } else {
+      $root.animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+  }
+
 });
 
 
@@ -821,28 +839,44 @@ function SendMessage(contents_exist) {
     }
 }
 
-
+var clicked = false;
 // Make taskbar buttons clickable
 $('#toolbar-red').click(function() {
     if ($('#shell').hasClass('minimize')) {
         MinimizeTerminal();
     }
-    if (unlockButtons) {
+    if (!unlockButtons) {
+        quitIntro = true;
+        if (!clicked) {
+            clicked = true;
+         setTimeout(function () {
+                  quitIntro = true;
+                  ResetTerminal();
+              }, 500);
+        } else {
+            setTimeout(function () {
+                  clicked = false;
+              }, 600);
+        }
+    } else {
         ResetTerminal();
     }
 });
 
 $('#toolbar-yellow').click(function() {
-     if (unlockButtons) {
-         MinimizeTerminal();
+     if (!unlockButtons) {
+         quitIntro = true;
      }
+         MinimizeTerminal();
+
 });
 
 $('#toolbar-green').click(function() {
     if ($('#shell').hasClass('minimize')) {
         MinimizeTerminal();
      }
-     if (unlockButtons) {
-         ClearTerminal();
+     if (!unlockButtons) {
+        quitIntro = true;
+        ClearTerminal();
      }
 });
