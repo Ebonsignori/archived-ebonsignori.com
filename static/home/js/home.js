@@ -215,6 +215,7 @@ var message_content;
 var typeSpeed = 45;
 var pauseBetween = 300;
 var quitIntro = false;
+var unlockButtons = true;
 var firstMessage = "Hello,";
 var secondMessage = "Welcome to the About Evan Bonsignori Terminal!";
 var thirdMessage = "To use the terminal, type out a supported command and press enter.";
@@ -454,6 +455,7 @@ function NewQuery() {
 // Introduction that runs through a series of introduction messages
 function TerminalIntro() {
     quitIntro = false;
+    unlockButtons = false;
     $('#main').html("<button class=\"quit-intro-btn\" onclick=\"QuitIntro();\">Click to Skip Introduction</button> <br/> <span class=\"fore\"></span><span class=\"accent\"> $ </span> <div class=\"enter\" id=\"query\" contenteditable=\"true\"></div>");
     (function printMsg (i) {
         if (quitIntro) {
@@ -585,6 +587,7 @@ function FinalMessage() {
               setTimeout(function () {
                   quitIntro = true;
                   unlockScreen = true;
+                  unlockButtons = true;
                   $('.enter').last().append("<br/> <br/>" +
                   "<div class=\'about-type-wrap\'><button class=\'about-type-btn\' onclick=\'ClearTerminal();\'>Terminal</button> <button class='about-type-btn' onclick=\'MinimizeTerminal();\'>Traditional</button></div>" +
                   "<br /> You can view the traditional about me page at any time by pressing the yellow minimize button in the top left of this terminal.");
@@ -600,7 +603,8 @@ function QuitIntro() {
     } else {
        quitIntro = true;
     }
-    unlockScreen= true;
+    unlockScreen = true;
+    unlockButtons = true;
 }
 
 // Clear the previous outputs of the terminal window
@@ -820,13 +824,25 @@ function SendMessage(contents_exist) {
 
 // Make taskbar buttons clickable
 $('#toolbar-red').click(function() {
-  ResetTerminal();
+    if ($('#shell').hasClass('minimize')) {
+        MinimizeTerminal();
+    }
+    if (unlockButtons) {
+        ResetTerminal();
+    }
 });
 
 $('#toolbar-yellow').click(function() {
-  MinimizeTerminal();
+     if (unlockButtons) {
+         MinimizeTerminal();
+     }
 });
 
 $('#toolbar-green').click(function() {
-  ClearTerminal();
+    if ($('#shell').hasClass('minimize')) {
+        MinimizeTerminal();
+     }
+     if (unlockButtons) {
+         ClearTerminal();
+     }
 });
