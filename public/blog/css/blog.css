@@ -212,6 +212,26 @@ header.masthead {
     header.masthead .post-heading .subheading {
       font-size: 30px; } }
 
+/* Preview image for post */
+.post-image {
+  width: 21em;
+  border: 3px solid black;
+}
+
+@media only screen and (max-width: 550px) {
+  .post-image {
+    width: 15em;
+    border: 3px solid black;
+  }
+}
+
+@media only screen and (max-width: 345px) {
+  .post-image {
+    width: 13em;
+    border: 1px solid black;
+  }
+}
+
 .post-preview > a {
   color: #212529; }
   .post-preview > a:focus, .post-preview > a:hover {
@@ -394,6 +414,40 @@ comment-separator-overlay {
     margin-top: 25px;
     padding: 5px;
 }
+
+/* Add Comments */
+.add-comment-form {
+  display: block;
+  margin: 0 auto;
+  padding: 7px;
+  border: 3px solid black;
+}
+.add-comment {
+  text-align: center;
+}
+
+.add-comment input {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid black;
+}
+
+.add-comment textarea {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid black;
+  overflow-x: hidden;
+  overflow-y: auto;
+  resize: vertical;
+}
+
+.add-comment-label {
+  display: block;
+}
+
+/* End Comments */
 
 .post-info {
     color: white;

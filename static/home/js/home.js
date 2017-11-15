@@ -40,15 +40,17 @@ var $root = $('html, body');
 var trigger = false;
 var contactInfoShown = false;
 var unlockScreen = false;
+
+function elementScrolled(elem) {
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+    var elemTop = $(elem).offset().top;
+    return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
+}
+
 $(window).scroll(function () {
     if (!unlockScreen) {
         // This is then function used to detect if the element is scrolled into view
-        function elementScrolled(elem) {
-            var docViewTop = $(window).scrollTop();
-            var docViewBottom = docViewTop + $(window).height();
-            var elemTop = $(elem).offset().top;
-            return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
-        }
 
         if (elementScrolled('#center-about-scroll')) {
             if (!trigger) {
