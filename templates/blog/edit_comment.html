@@ -5,7 +5,8 @@
     {% block main_image %}{% if post.header_image %}{{ MEDIA_URL }}{{ post.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
 
     {% block meta %}
-        <span class="meta"> Comments must be approved before being displayed
+        <span class="meta"> Comments must be approved before being displayed <br/>
+        <a class="btn btn-default options-btn remove" href="{% url 'comment_remove' pk=comment.pk %}">Delete Comment</a>
         </span>
     {% endblock %}
 
@@ -26,8 +27,8 @@
                     <label class="add-comment-label" for="{{ comment_form.comment_body.id_for_label }}"><em>Your Comment</em></label>
                           {{ comment_form.comment_body.errors }}
                           {{ comment_form.comment_body}}
-                      </div>
-            <button class="btn btn-default options-btn comment-btn inline-btn" style="background-color: lightgrey; margin-top: 25px;" type="submit" style="color:black">Post Comment</button>
+                </div>
+            <button class="btn btn-default options-btn comment-btn inline-btn" style="background-color: lightgrey; margin-top: 25px;" type="submit" style="color:black">Revise Comment</button>
         </form>
     </div>
 {% endblock %}

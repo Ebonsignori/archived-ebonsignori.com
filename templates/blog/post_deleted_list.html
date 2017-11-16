@@ -1,6 +1,8 @@
 {% extends 'blog/base.html' %}
 
+{% block page_title %}Drafts | Evan A. Bonsignori{% endblock %}
 {% block main_image %}{% load static %}{% static "blog/images/background.png" %}{% endblock %}
+{% block no_index %} <META NAME="robots" CONTENT="noindex,nofollow"> {% endblock %}
 
 {% block content %}
     {% for post in posts %}

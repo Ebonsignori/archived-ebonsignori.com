@@ -11,7 +11,13 @@
 
   <title> {% block page_title %}{% endblock %} </title>
   <meta name="author" content="Evan Bonsignori">
-  <meta name="description" content="Currently a work in progress.">
+  <meta name="description" content="{% block page_description %}{% endblock %}">
+
+ <!-- Open Graph Data -->
+  <meta property="og:title" content="{% block page_og_title %}{% endblock %}">
+ <meta property="og:description" content="{% block page_og_description %}{% endblock %}">
+  <meta property="og:image" content="{% block page_og_image %}{% endblock %}">
+    {% block no_index %}{% endblock %}
     {% load static %}
     <link href="{% static 'blog/css/vendor/bootstrap.min.css' %}" rel="stylesheet">  <!-- Bootstrap Core CSS -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -22,11 +28,6 @@
 
     <link href="{%  static 'blog/css/blog.css'  %}" rel="stylesheet" type="text/css" media="all" />
     <link href="{% static 'blog/css/main.css'  %}" rel="stylesheet" type="text/css" media="all" />
-
-  <!-- Open Graph Data -->
-  <meta property="og:image" content="">
-  <meta property="og:description" content="Currently a work in progress.">
-  <meta property="og:title" content="Evan Bonsignori's Blog">
 
     <!-- Bootstrap and Jquery -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> <!-- Font-Awesome CSS -->
@@ -46,7 +47,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/blog">Recent Posts</a>
+              <a class="nav-link" href="/blog">Posts</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/#about-section">About</a>
@@ -68,8 +69,8 @@
                <a href="{% url 'post_deleted_list' %}" class="nav-link">Deleted</a>
                 </li>
                   <li class="nav-item"><a href="{% url 'logout' %}">Log out</a></li>
-            {% else %}
-                  <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+{#            {% else %}#}
+{#                  <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>#}
             {%  endif %}
           </ul>
         </div>

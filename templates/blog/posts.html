@@ -1,6 +1,10 @@
 {% extends 'blog/base.html' %}
 
-{% block page_title %}Evan Bonsignori's Blog{% endblock %}
+{% block page_title %}Posts | Evan A. Bonsignori's Blog{% endblock %}
+{% block page_description %}A list of all posts in Evan Bonsignori's Blog{% endblock %}
+{% block page_og_title %}Posts | Evan A. Bonsignori{% endblock %}
+{% block page_og_description %}A list of all posts in Evan Bonsignori's Blog{% endblock %}
+{% block page_og_image %}{% load static %}{% static "blog/images/background.png" %}{% endblock %}
 {% block title %}Blog{% endblock %}
 {% block subtitle %}{% if category %}{% else %}Recent Posts{% endif %}{% endblock %}
 {% block main_image %}{% if post.main_image %}{{ post.main_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}

@@ -153,7 +153,7 @@ def comment_edit(request, pk, slug):
     else:
         comment_form = CommentForm(instance=comment)
 
-    return render(request, 'blog/edit_comment.html', {'comment_form': comment_form, 'post': post})
+    return render(request, 'blog/edit_comment.html', {'comment_form': comment_form, 'post': post, 'comment': comment})
 
 
 @login_required

@@ -11,8 +11,8 @@ urlpatterns = [
     url(r'^', include('home.urls')),
     url(r'^blog/', include('blog.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^accounts/login/$', views.login, name='login'),
-    url(r'^accounts/logout/$', views.logout, name='logout'),
+    url(r'^login/$', views.login, name='login'),
+    url(r'^logout/$', views.logout, name='logout'),
     url(r'^markdownx/', include(markdownx)),
 ]
 

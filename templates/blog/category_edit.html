@@ -2,6 +2,8 @@
 
 
     {% block title %}{% if category.title %}Editing: {{ category.title }}{% else %}New Category{% endif %}{% endblock %}
+    {% block page_title %}Drafts | Evan A. Bonsignori{% endblock %}
+    {% block no_index %} <META NAME="robots" CONTENT="noindex,nofollow"> {% endblock %}
     {% block main_image %}{% if post.header_image %}{{ MEDIA_URL }}{{ post.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
 
 {% block content %}

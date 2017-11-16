@@ -1,7 +1,10 @@
 {% extends 'blog/base.html' %}
 
-
-{% block page_title %}{{ post.title }}{% endblock %}
+{% block page_title %}{{ post.title }} | Blog {% endblock %}
+{% block page_description %}{{ post.description }}{% endblock %}
+{% block page_og_title %}{{ post.title }} | Evan A. Bonsignori{% endblock %}
+{% block page_og_description %}{{ post.description }}{% endblock %}
+{% block page_og_image %}{{ post.header_image.url }}{% endblock %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block subtitle %}<h2>{{ post.subtitle }}</h2>{% endblock %}
 {% block main_image %}{% if post.header_image %}{{ MEDIA_URL }}{{ post.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
@@ -42,10 +45,10 @@
         <strong>Last updated on</strong> : {{ post.updated_date|date:"F j, Y" }}
             <br />
             <br />
-            <strong>Category</strong> : {{ post.category }}
+            <strong>Category</strong> : <a style="color:deepskyblue;" href="/blog/category/{{ post.category.slug }}">{{ post.category }}</a>
         <br />
             <br />
-        <strong> By </strong>: {{ post.author }}
+            <strong> By </strong>: <em><a style="color:deepskyblue;" href="/#about-section">{{ post.author }}</a></em>
             <br />
             <br />
         </div>
@@ -103,7 +106,7 @@
             {% if is_posted %}
                 <div style="text-align: center;">
                     <strong style="color:green;"> Comment Submitted! </strong> <br />
-                    <em>Your comment won't show up because it pending approval.</em>
+                    <em>If your comment isn't visible, then it is pending approval.</em>
                 </div>
             {% endif %}
             </div>

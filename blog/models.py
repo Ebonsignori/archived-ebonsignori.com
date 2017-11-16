@@ -8,6 +8,7 @@ class Post(models.Model):
     author = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=200, null=True, blank=True)
+    description = models.CharField(max_length=500)
     preview = models.ForeignKey('blog.PostDisplayImage', null=True, blank=True, related_name='preview_image')
     header_image = models.ImageField(null=True, blank=True)
     category = models.ForeignKey('blog.Category', on_delete=models.SET_NULL, null=True, blank=True)
