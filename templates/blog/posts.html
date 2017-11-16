@@ -1,13 +1,14 @@
 {% extends 'blog/base.html' %}
 
-{% block page_title %}Posts | Evan A. Bonsignori's Blog{% endblock %}
-{% block page_description %}A list of all posts in Evan Bonsignori's Blog{% endblock %}
-{% block page_og_title %}Posts | Evan A. Bonsignori{% endblock %}
-{% block page_og_description %}A list of all posts in Evan Bonsignori's Blog{% endblock %}
-{% block page_og_image %}{% load static %}{% static "blog/images/background.png" %}{% endblock %}
-{% block title %}Blog{% endblock %}
+{% block page_title %}{% if category %}{{ category }}{% else %}Posts{% endif %} | Evan A. Bonsignori's Blog{% endblock %}
+{% block page_description %}A list of {% if category %}posts in the category: {{ category }}{% else %}all posts{% endif %} in Evan Bonsignori's Blog{% endblock %}
+{% block page_og_title %}{% if category %}{{ category }}{% else %}Posts{% endif %} | Evan A. Bonsignori's Blog{% endblock %}
+{% block page_og_description %}A list of {% if category %}posts in the category: {{ category }}{% else %}all posts{% endif %} in Evan Bonsignori's Blog{% endblock %}
+{% block page_og_image %}https://ebonsignori.com{% load static %}{% static "blog/images/background.png" %}{% endblock %}
+{% block type %}website{% endblock %}
+{% block title %}{% if category %}{{ category.title }}{% else %}Blog{% endif %}{% endblock %}
 {% block subtitle %}{% if category %}{% else %}Recent Posts{% endif %}{% endblock %}
-{% block main_image %}{% if post.main_image %}{{ post.main_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
+{% block main_image %}{% if category.header_image %}{{ MEDIA_URL }}{{ category.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
 {% block meta %}
     <span class="meta">
         <nav class="dropdown">
@@ -39,6 +40,8 @@
                 {% if category.title == cat.title %}
                     <br />
                      <br />
+                    <a class="btn btn-default options-btn edit" href="{% url 'category_edit' slug=category.slug %}">Edit Category</a>
+                    <br /><br />
                     <a class="btn btn-default options-btn remove" href="{% url 'category_delete' pk=category.pk %}">Delete Category</a>
                 {% endif %}
           {% endfor %}
@@ -53,6 +56,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
     {% for post in posts %}
         {% if post.is_deleted == False and post.is_published %}
+
              <div class="post-preview">
                  <a href="{{ post.get_absolute_url }}">
                   <h2 class="post-title">
@@ -72,9 +76,6 @@
                   on {{ post.published_date|date:"F j, Y" }}</p>
                  {% if user.is_authenticated %}
                     <a class="btn btn-default options-btn inline-btn edit" href="{% url 'post_edit' slug=post.slug %}">Edit Post</a>
-                     {% if post.category %}
-                         <a class="btn btn-default options-btn inline-btn edit" href="{% url 'category_edit' slug=post.category.slug %}">Edit Category</a>
-                     {% endif %}
                  {% endif %}
               </div>
               <hr />

@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
     {% block page_title %}Edit Comment - {% if post.title %}{{ post.title }}{% endif %}{% endblock %}
+{% block no_index %} <META NAME="robots" CONTENT="noindex,nofollow"> {% endblock %}
     {% block title %}Edit Comment{% endblock %}
     {% block subtitle %}<h2>{% if post.title %}On {{ post.title }}{% endif %}</h2>{% endblock %}
     {% block main_image %}{% if post.header_image %}{{ MEDIA_URL }}{{ post.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}

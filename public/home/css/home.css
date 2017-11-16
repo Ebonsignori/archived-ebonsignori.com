@@ -611,17 +611,110 @@ p {
 .quit-intro-btn {
     position: absolute;
     top: 40px;
-    width: 700px;
+    width: 350px;
     transition: all 0.3s !important;
     color: white;
     padding: 5px;
     border: 1px solid white;
-    background: black;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #cc4e23;
 }
 
 .quit-intro-btn:hover {
     transition: all 0.3s !important;
-    background: slategrey;
+    background: darkkhaki;
+}
+
+.traditional-intro-btn {
+    position: absolute;
+    top: 40px;
+    left: 360px;
+    width: 350px;
+    transition: all 0.3s !important;
+    color: white;
+    padding: 5px;
+    border: 1px solid white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: darksalmon;
+}
+
+.traditional-intro-btn:hover {
+    transition: all 0.3s !important;
+    background: darkkhaki;
+}
+
+@media (max-width: 763px) {
+    .quit-intro-btn {
+        font-size: .8em;
+        width: 300px;
+        padding: 4px;
+    }
+    .traditional-intro-btn {
+        font-size: .8em;
+        left: 310px;
+        width: 300px;
+        padding: 4px;
+    }
+}
+
+@media (max-width: 650px) {
+    .quit-intro-btn {
+        width: 550px;
+        padding: 5px;
+    }
+    .traditional-intro-btn {
+        top: 78px;
+        left: 5px;
+        width: 550px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .quit-intro-btn {
+        width: 200px;
+        padding: 4px;
+    }
+    .traditional-intro-btn {
+        top: 40px;
+        left: 210px;
+        width: 200px;
+        padding: 4px;
+    }
+}
+
+@media (max-width: 435px) {
+    .quit-intro-btn {
+        font-size: .9em;
+        top: 33px;
+        width: 350px;
+        padding: 5px;
+    }
+    .traditional-intro-btn {
+        font-size: .9em;
+        top: 65px;
+        left: 5px;
+        width: 350px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 350px) {
+    .quit-intro-btn {
+        top: 33px;
+        width: 325px;
+        padding: 3px;
+    }
+    .traditional-intro-btn {
+        top: 57px;
+        left: 5px;
+        width: 325px;
+        padding: 3px;
+    }
 }
 
 .enter {

@@ -57,6 +57,7 @@ class PostDisplayImage(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=100, db_index=True, unique=True)
     slug = models.SlugField(max_length=100, db_index=True, unique=True)
+    header_image = models.ImageField(null=True, blank=True)
     order = models.IntegerField(unique=True, null=True)
 
     def __str__(self):

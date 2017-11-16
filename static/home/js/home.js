@@ -29,7 +29,6 @@ $('#triangle').css("top", $('#background-slider').height()-70 + "px");
 centerProfile(); // Load and center profile picture and buttons
 
 $(window).resize(function() {
-    console.log(isScrolledIntoView('#shell'));
   $('#triangle').css("top", $('#background-slider').height()-70 + "px");
   centerProfile();
 });
@@ -59,11 +58,6 @@ $(window).scroll(function () {
                 $root.animate({ scrollTop: $('#about-section').offset().top}, 500, 'linear');
             }
 
-            var fixed = document.getElementById('about-section');
-            fixed.addEventListener('touchmove', function (e) {
-                e.preventDefault();
-            }, false);
-            // fixed.scrollIntoView();
         }
     }
 
@@ -346,7 +340,9 @@ $('#main').keyup(function(e) {
        case "who are you?":
        case "who is evan bonsignori?":
        case "tell me about yourself":
-         OutputQuery("My name is Evan Bonsignori and I\'m a <strong>computer scientist in training</strong> (<em>aka Student</em>). <br /> I began and completed my studies in electical engineering up to an associates, but found the little MATLAB programming we used to be the most rewarding aspect of my engineering courses. Thus, I tested out an online Python class and haven\'t stopped programming since. I plan to graduate with a bachelors in computer science accompanied by a minor in mathematics by 2018. Until then <strong> this website and its portfolio contents are a work in progress. </strong>");
+         OutputQuery("My name is Evan Bonsignori, and although I make a hobby of web development, I'm really not a web developer.\n" +
+             "I'm a problem solver regardless of domain. I dual majored in computer science and applied mathematics, and\n" +
+             "I love finding excuses to <a href=\"#portfolio\">make projects</a>, especially when they direct me in learning something new.");
          break;
 
        // help - List Commands
@@ -377,7 +373,7 @@ $('#main').keyup(function(e) {
        case "hostname":
        case "uname -a":
        case "what is this site?":
-          OutputQuery("ebonsignori.com which is the homepage of me, Evan Bonsignori. I started it to gain expierence with AWS and Digital Ocean server based hosting, but since it has grown into a portfolio, blog, and about me page. I hope you like it.");
+          OutputQuery("ebonsignori.com, the homepage of Evan Bonsignori. It's made from scratch using bootstrap for some of the front-end and the Django framework for all of the backend. I started it to gain experience with AWS and Digital Ocean server based hosting, but eventually moved it to shared hosting. The process of creating it has been a learning experience. It now contains a portfolio, blog, and this cool (at least I think so) terminal.");
           break;
 
        // history - My history
@@ -390,7 +386,7 @@ $('#main').keyup(function(e) {
          case "domain":
          case "where am i?":
        case "pwd":
-         OutputQuery("<a href='https://ebonsignori.com'>https://ebonsignori.com</a>");
+         OutputQuery("<a href='https://ebonsignori.com'>https://ebonsignori.com</a> (I'd say Duh, but this is really on me for not making this command more useful)");
          break;
 
        // ls - list site links
@@ -476,7 +472,7 @@ function NewQuery() {
 function TerminalIntro() {
     quitIntro = false;
     unlockButtons = false;
-    $('#main').html("<button class=\"quit-intro-btn\" onclick=\"QuitIntro();\">Click to Skip Introduction</button> <br/> <span class=\"fore\"></span><span class=\"accent\"> $ </span> <div class=\"enter\" id=\"query\" contenteditable=\"true\"></div>");
+    $('#main').html("<button class=\"quit-intro-btn\" onclick=\"QuitIntro();\">Skip To Terminal</button> <button class=\"traditional-intro-btn\" onclick=\"MinimizeTerminal(true);\">Show Traditional About Me</button> <br/> <span class=\"fore\"></span><span class=\"accent\"> $ </span> <div class=\"enter\" id=\"query\" contenteditable=\"true\"></div>");
     (function printMsg (i) {
         if (quitIntro) {
             quitIntro = false;

@@ -120,7 +120,7 @@ def post_delete(request, slug):
 @login_required
 def category_new(request):
     if request.method == "POST":
-        form = CategoryForm(request.POST)
+        form = CategoryForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/blog')
@@ -133,10 +133,10 @@ def category_new(request):
 def category_edit(request, slug):
     category = get_object_or_404(Category, slug=slug)
     if request.method == "POST":
-        form = CategoryForm(request.POST, instance=category)
+        form = CategoryForm(request.POST, request.FILES, instance=category)
         if form.is_valid():
             category.save()
-            return redirect('post_view', slug=category.slug)
+            return redirect('change_category', slug=category.slug)
     else:
         form = CategoryForm(instance=category)
     return render(request, 'blog/category_edit.html', {'form': form, 'category': category})

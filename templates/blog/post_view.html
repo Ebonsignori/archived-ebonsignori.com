@@ -4,7 +4,8 @@
 {% block page_description %}{{ post.description }}{% endblock %}
 {% block page_og_title %}{{ post.title }} | Evan A. Bonsignori{% endblock %}
 {% block page_og_description %}{{ post.description }}{% endblock %}
-{% block page_og_image %}{{ post.header_image.url }}{% endblock %}
+{% block page_og_image %}https://ebonsignori.com{% if post.header_image %}{{ MEDIA_URL }}{{ post.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
+{% block type %}article{% endblock %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block subtitle %}<h2>{{ post.subtitle }}</h2>{% endblock %}
 {% block main_image %}{% if post.header_image %}{{ MEDIA_URL }}{{ post.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
@@ -45,10 +46,10 @@
         <strong>Last updated on</strong> : {{ post.updated_date|date:"F j, Y" }}
             <br />
             <br />
-            <strong>Category</strong> : <a style="color:deepskyblue;" href="/blog/category/{{ post.category.slug }}">{{ post.category }}</a>
+            <strong>Category</strong> : <a style="color:darksalmon;" href="/blog/category/{{ post.category.slug }}">{{ post.category }}</a>
         <br />
             <br />
-            <strong> By </strong>: <em><a style="color:deepskyblue;" href="/#about-section">{{ post.author }}</a></em>
+            <strong> By </strong>: <em><a style="color:darksalmon;" href="/#about-section">{{ post.author }}</a></em>
             <br />
             <br />
         </div>

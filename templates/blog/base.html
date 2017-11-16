@@ -3,20 +3,22 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1,
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
               user-scalable=no" />
-  <meta name="url" content="https://ebonsignori.com/blog">
-  <meta name="rating" content="General">
+    <meta name="url" content="https://ebonsignori.com{{ request.path }}">
+    <meta name="rating" content="General">
 
-  <title> {% block page_title %}{% endblock %} </title>
-  <meta name="author" content="Evan Bonsignori">
-  <meta name="description" content="{% block page_description %}{% endblock %}">
+    <title> {% block page_title %}{% endblock %} </title>
+    <meta name="author" content="Evan Bonsignori">
+    <meta name="description" content="{% block page_description %}{% endblock %}">
 
- <!-- Open Graph Data -->
-  <meta property="og:title" content="{% block page_og_title %}{% endblock %}">
- <meta property="og:description" content="{% block page_og_description %}{% endblock %}">
-  <meta property="og:image" content="{% block page_og_image %}{% endblock %}">
+    <!-- Open Graph Data -->
+    <meta property="og:title" content="{% block page_og_title %}{% endblock %}">
+    <meta property="og:description" content="{% block page_og_description %}{% endblock %}">
+    <meta property="og:image" content="{% block page_og_image %}{% endblock %}">
+    <meta property="og:type" content="{% block type %}{% endblock %}">
+    <meta property="og:url" content="https://ebonsignori.com{{ request.path }}">
     {% block no_index %}{% endblock %}
     {% load static %}
     <link href="{% static 'blog/css/vendor/bootstrap.min.css' %}" rel="stylesheet">  <!-- Bootstrap Core CSS -->
