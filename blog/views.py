@@ -53,6 +53,7 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
+            post.create_post_responses()
             return redirect('post_view', slug=post.slug)
     else:
         form = PostForm()

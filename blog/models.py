@@ -28,6 +28,11 @@ class Post(models.Model):
     def get_absolute_url(self):
         return 'post_view', None, {'slug': self.slug}
 
+    def create_post_responses(self):
+        # Create response model corresponding to post
+        if not PostResponse.objects.filter(post=self).exists():
+            PostResponse.objects.create(post=self)
+
     def get_preview_image(self):
         return self.preview.image
 
@@ -39,9 +44,6 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         self.updated_date = timezone.now()
-        # Create response model corresponding to post
-        response = PostResponse(post=self)
-        response.save()
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
