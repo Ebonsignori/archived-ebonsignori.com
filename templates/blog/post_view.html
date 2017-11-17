@@ -5,6 +5,8 @@
 {% block page_og_title %}{{ post.title }} | Evan A. Bonsignori{% endblock %}
 {% block page_og_description %}{{ post.description }}{% endblock %}
 {% block page_og_image %}{% if post.header_image %}https://ebonsignori.com{{ MEDIA_URL }}{{ post.header_image.url }}{% else %}{% load static %}{% static "blog/images/background.png" %}{% endif %}{% endblock %}
+{% block page_og_image_width %}{% if post.header_image %}{{ post.header_image.width }}{% endif %}{% endblock %}
+{% block page_og_image_height %}{% if post.header_image %}{{ post.header_image.height }}{% endif %}{% endblock %}
 {% block type %}article{% endblock %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block subtitle %}<h2>{{ post.subtitle }}</h2>{% endblock %}
