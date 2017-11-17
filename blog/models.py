@@ -2,7 +2,7 @@ from django.db import models
 from markdownx.models import MarkdownxField
 from django.utils.text import slugify
 from django.utils import timezone
-
+from PIL import Image
 
 class Post(models.Model):
     author = models.CharField(max_length=200)
@@ -10,7 +10,7 @@ class Post(models.Model):
     subtitle = models.CharField(max_length=200, null=True, blank=True)
     description = models.CharField(max_length=500)
     preview = models.ForeignKey('blog.PostDisplayImage', null=True, blank=True, related_name='preview_image')
-    header_image = models.ImageField(null=True, blank=True)
+    header_image = models.ImageField(null=True, blank=True, upload_to='blog/header_images/%Y/%m/')
     category = models.ForeignKey('blog.Category', on_delete=models.SET_NULL, null=True, blank=True)
     text = MarkdownxField()
     created_date = models.DateTimeField(
@@ -53,7 +53,7 @@ class Post(models.Model):
 class PostDisplayImage(models.Model):
     title = models.CharField(max_length=100)
     attached_to = models.CharField(max_length=100, unique=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to='blog/preview_images/%Y/%m/')
 
     def __str__(self):
         return self.title

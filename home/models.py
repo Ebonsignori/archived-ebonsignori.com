@@ -17,14 +17,14 @@ class PortfolioItem(models.Model):
     modal_id = models.CharField(max_length=500)
     modal_header = models.CharField(max_length=500)
     modal_subtitle = models.CharField(max_length=500)
-    modal_image = models.ImageField(max_length=500, null=True, blank=True)
+    modal_image = models.ImageField(max_length=500, null=True, blank=True, upload_to='home/portfolio/modal_images/%Y/')
     modal_date = models.CharField(max_length=500)
     modal_client = models.CharField(max_length=500)
 
     modal_body = models.TextField()
 
     # Portfolio Caption (Homepage display)
-    display_image = models.ImageField()
+    display_image = models.ImageField(upload_to='home/portfolio/display_images/%Y/')
     display_image_alt_text = models.CharField(max_length=500)
     caption_title = models.CharField(max_length=500)
     caption_subtitle = models.CharField(max_length=500)

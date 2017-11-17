@@ -593,10 +593,25 @@ comment-separator-overlay {
   margin: 0 auto;
 }
 
+/* End callable CS */
+
+/* Share Post Buttons */
+.fb-share-btn {
+  display: inline-block;
+  position: absolute;
+  left: 25%;
+}
+
+.twitter-share-btn {
+  display: inline-block;
+  position: absolute;
+  right: 25%;
+}
 /* Reaction Buttons */
 .reaction {
   display: inline-block !important;
 }
+
 .reaction-btn {
   transition: all .5s;
   display: block;
@@ -604,6 +619,18 @@ comment-separator-overlay {
   border-radius: 5px;
   background: white;
 }
+
+
+@media only screen and (max-width: 775px) {
+  .reaction {
+    display: block !important;
+    margin: 0 auto;
+  }
+  .reaction-btn {
+    margin: 0 auto;
+  }
+}
+
 
 .reaction-count {
   display: block;

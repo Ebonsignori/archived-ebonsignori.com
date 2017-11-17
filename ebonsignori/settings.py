@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -115,6 +116,7 @@ STATICFILES_DIRS = [
 # MARKDOWNX_MEDIA_PATH = os.path.join(BASE_DIR, 'public/static/markdownx')
 # MARKDOWNX_UPLOAD_URLS_PATH = os.path.join(BASE_DIR, 'public/static/markdownx')
 # MARKDOWNX_URLS_PATH = os.path.join(BASE_DIR, 'static/images/markdownx')
+MARKDOWNX_MEDIA_PATH = datetime.now().strftime('markdownx/%Y/%m/%d')
 MARKDOWNX_EDITOR_RESIZABLE = True
 MARKDOWNX_MARKDOWN_EXTENSIONS = [
     'markdown.extensions.extra',
@@ -134,5 +136,5 @@ EMAIL_HOST_PASSWORD = 'Kvothe586843'
 EMAIL_USE_TLS = True
 
 # Media Files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'public/uploads/')
 MEDIA_URL ='/uploads/'
