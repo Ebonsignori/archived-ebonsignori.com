@@ -592,3 +592,42 @@ comment-separator-overlay {
   display: block;
   margin: 0 auto;
 }
+
+/* Reaction Buttons */
+.reaction {
+  display: inline-block !important;
+}
+.reaction-btn {
+  transition: all .5s;
+  display: block;
+  border: 2px solid black;
+  border-radius: 5px;
+  background: white;
+}
+
+.reaction-count {
+  display: block;
+  font-weight: bold;
+  border: none;
+}
+
+.reaction-btn.good:hover {
+  transition: all .5s;
+  background: green;
+  color: white;
+}
+.reaction-btn.ok:hover {
+  transition: all .5s;
+  background: orange;
+  color: white;
+}
+.reaction-btn.poor:hover {
+  transition: all .5s;
+  background: salmon;
+  color: white;
+}
+.reaction-btn.bad:hover {
+  transition: all .5s;
+  background: red;
+  color: white;
+}

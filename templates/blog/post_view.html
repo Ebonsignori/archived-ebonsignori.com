@@ -40,16 +40,44 @@
       </div>
     </div>
 
+    <hr />
+    <div class="text-center">
+    <div>
+        <span><strong>How Was This Post?</strong></span>
+        <div class="reaction-options">
+            <div class="reaction">
+                <a style="text-decoration: none;" href="{% url 'update_reaction' slug=post.slug reaction=1 %}"><button class="reaction-btn good">I Could Bookmark This</button></a>
+                <span class="reaction-count">{{ responses.great }}</span>
+            </div>
+            <div class="reaction">
+                <a style="text-decoration: none;" href="{% url 'update_reaction' slug=post.slug reaction=2 %}"><button class="reaction-btn ok">It's OK</button></a>
+                <span class="reaction-count">{{ responses.good }}</span>
+            </div>
+            <div class="reaction">
+                <a style="text-decoration: none;" href="{% url 'update_reaction' slug=post.slug reaction=3 %}"><button class="reaction-btn poor">Not So Great</button></a>
+                <span class="reaction-count">{{ responses.poor }}</span>
+            </div>
+            <div class="reaction">
+                <a style="text-decoration: none;" href="{% url 'update_reaction' slug=post.slug reaction=4 %}"><button class="reaction-btn bad">Remove This From The Internet</button></a>
+                <span class="reaction-count">{{ responses.bad }}</span>
+            </div>
+
+        </div>
+    </div>
+        <br/>
+    <div style="display: inline-block; position: absolute; left: 45%;"><div class="fb-share-button" data-href="{{ request.path }}" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Febonsignori.com%2F&amp;src=sdkpreparse">Share</a></div></div>
+    <div style="display: inline-block; position: absolute; left: 50%;"><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Check%20out%20this%20article!" data-size="large">Tweet</a></div></div>
      <div class="comment-separator">
         <div class="comment-separator-overlay"></div>
         <div class="post-info">
+            <!-- Your share button code -->
         <strong>Last updated on</strong> : {{ post.updated_date|date:"F j, Y" }}
             <br />
             <br />
-            <strong>Category</strong> : <a style="color:darksalmon;" href="/blog/category/{{ post.category.slug }}">{{ post.category }}</a>
+            <strong>Category</strong> : <a style="color:white;" href="/blog/category/{{ post.category.slug }}">{{ post.category }}</a>
         <br />
             <br />
-            <strong> By </strong>: <em><a style="color:darksalmon;" href="/#about-section">{{ post.author }}</a></em>
+            <strong> By </strong>: <em><a style="color:white;" href="/#about-section">{{ post.author }}</a></em>
             <br />
             <br />
         </div>
@@ -113,4 +141,34 @@
             </div>
         </div>
      </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Facebook -->
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=282618065592948';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Twitter -->
+    <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
 {% endblock %}

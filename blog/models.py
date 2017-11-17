@@ -39,6 +39,9 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         self.updated_date = timezone.now()
+        # Create response model corresponding to post
+        response = PostResponse(post=self)
+        response.save()
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -82,3 +85,14 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.author
+
+
+class PostResponse(models.Model):
+    post = models.ForeignKey('blog.Post', related_name='responses')
+    great = models.IntegerField(default=0)
+    good = models.IntegerField(default=0)
+    poor = models.IntegerField(default=0)
+    bad = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.post.title) + "| Response."

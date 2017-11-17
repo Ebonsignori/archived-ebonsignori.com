@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from markdownx.utils import markdownify
-from .models import Post, Category, Comment
+from .models import Post, Category, Comment, PostResponse
 from .forms import PostForm, CategoryForm, CommentForm
 from django.core.mail import send_mail
 from django.utils import timezone
@@ -40,9 +40,10 @@ def post_view(request, slug):
     else:
         comment_form = CommentForm()
 
+    responses = post.responses.last()
     comments = post.comments.all()
     post.text = markdownify(post.text)
-    return render(request, 'blog/post_view.html', {'post': post, 'comments': comments, 'comment_form': comment_form})
+    return render(request, 'blog/post_view.html', {'post': post, 'comments': comments, 'comment_form': comment_form, 'responses': responses})
 
 
 @login_required
@@ -188,3 +189,24 @@ def category_delete(request, pk):
         post.save()
     category.delete()
     return redirect("/blog")
+
+
+def update_reaction(request, slug, reaction):
+    post = get_object_or_404(Post, slug=slug)
+    response = get_object_or_404(PostResponse, post=post)
+
+    # Reaction is a number 1-4 by increasingly good reactions
+    if int(reaction) is 1:
+        response.great += 1
+        response.save()
+    elif int(reaction) is 2:
+        response.good += 1
+        response.save()
+    elif int(reaction) is 3:
+        response.poor += 1
+        response.save()
+    elif int(reaction) is 4:
+        response.bad += 1
+        response.save()
+
+    return redirect('post_view', slug=post.slug)

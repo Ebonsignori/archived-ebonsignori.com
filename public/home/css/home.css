@@ -619,12 +619,12 @@ p {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    background: #cc4e23;
+    background: black;
 }
 
 .quit-intro-btn:hover {
     transition: all 0.3s !important;
-    background: darkkhaki;
+    background: #ff6c6b;
 }
 
 .traditional-intro-btn {
@@ -639,12 +639,12 @@ p {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    background: darksalmon;
+    background: black;
 }
 
 .traditional-intro-btn:hover {
     transition: all 0.3s !important;
-    background: darkkhaki;
+    background: #ff6c6b;
 }
 
 @media (max-width: 763px) {
