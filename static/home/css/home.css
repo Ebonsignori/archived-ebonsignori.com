@@ -1856,3 +1856,43 @@ img::-moz-selection {
     height: 83%;
     border-radius: 5px;
 }
+@media all and (max-width: 1024px) {
+    #traditional-about {
+    font-size: .9em !important;
+}
+}
+
+@media all and (max-width: 1008px) {
+    #traditional-about {
+    font-size: .8em !important;
+}
+}
+
+@media all and (max-width: 683px) {
+    #traditional-about {
+    font-size: .7em !important;
+}
+}
+
+@media all and (max-width: 683px) {
+    #traditional-about {
+    font-size: .7em !important;
+}
+}
+
+@media all and (max-width: 400px), all and (max-height: 700px) {
+     #traditional-about {
+    font-size: .6em !important;
+}
+    #traditional-about h2 {
+        margin-top: 5px;
+    }
+}
+
+@media all and (max-width: 320px) {
+    #traditional-about {
+    font-size: .5em !important;
+}
+}
+
+

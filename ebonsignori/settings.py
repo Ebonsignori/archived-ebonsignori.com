@@ -136,5 +136,5 @@ EMAIL_HOST_PASSWORD = 'Kvothe586843'
 EMAIL_USE_TLS = True
 
 # Media Files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'public/uploads/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads/')
 MEDIA_URL ='/uploads/'
