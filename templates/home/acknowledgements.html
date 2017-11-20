@@ -53,7 +53,7 @@
     <hr/>
             {% for acknowledgement in acknowledgements %}
                 <h3 class="text-center">{{ acknowledgement.subject }}</h3>
-                <p class="text-center">{{ acknowledgement.description }}</p>
+                <p class="text-center">{% autoescape off %}{{ acknowledgement.description }}{% endautoescape %}</p>
                  {%  if acknowledgement.link  %}
                 <br />
                      <div class="text-center"><a href="{{ acknowledgement.link }}">{{ acknowledgement.link_text }}</a></div>

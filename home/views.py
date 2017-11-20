@@ -38,5 +38,5 @@ def index(request):
 
 
 def acknowledgements(request):
-    acknowledgements = Acknowledgements.objects.all()
+    acknowledgements = Acknowledgements.objects.all().order_by("order")
     return render(request, 'home/acknowledgements.html', {'acknowledgements': acknowledgements})

@@ -1846,7 +1846,8 @@ img::-moz-selection {
 
 /* Traditional About Me */
 #traditional-about {
-    overflow: scroll;
+    overflow: auto;
+    overflow-x: hidden;
     color: black;
     position: absolute;
     top: 70px;
@@ -1858,4 +1859,17 @@ img::-moz-selection {
     border-radius: 5px;
 }
 
+@media all and (max-width: 1300px) {
+    #traditional-about h2{
+        margin-top: 25px;
+    }
+}
 
+@media all and (max-width: 600px) {
+  #traditional-about {
+    top: 60px !important;
+  }
+    .minimize {
+        height: 30px !important;
+    }
+}
