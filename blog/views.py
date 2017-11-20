@@ -27,10 +27,12 @@ def post_view(request, slug):
 
             send_mail(
                 'New Comment on \"' + str(post) + '\"',
-                str(post.comments.last().comment_body),
+                str(post.comments.last().comment_body + "\n\n https://www.ebonsignori.com" + request.path +
+                    "\n\n IP: " + request.META.get('REMOTE_ADDR') + "\n\n Host: " + request.META.get('REMOTE_HOST')),
                 'evan@ebonsignori.com',
                 ['evanabonsignori@gmail.com'],
-                fail_silently=False,
+                fail_silently=True,
+                # html_message=True,
             )
 
             comments = post.comments.all()
@@ -196,18 +198,32 @@ def update_reaction(request, slug, reaction):
     post = get_object_or_404(Post, slug=slug)
     response = get_object_or_404(PostResponse, post=post)
 
-    # Reaction is a number 1-4 by increasingly good reactions
-    if int(reaction) is 1:
-        response.great += 1
-        response.save()
-    elif int(reaction) is 2:
-        response.good += 1
-        response.save()
-    elif int(reaction) is 3:
-        response.poor += 1
-        response.save()
-    elif int(reaction) is 4:
-        response.bad += 1
-        response.save()
+    if str(slug) not in request.session:
+        request.session[str(slug)] = True
+
+    if request.session[str(slug)]:
+        # Reaction is a number 1-4 by increasingly good reactions
+        if int(reaction) is 1:
+            response.great += 1
+            response.save()
+        elif int(reaction) is 2:
+            response.good += 1
+            response.save()
+        elif int(reaction) is 3:
+            response.poor += 1
+            response.save()
+        elif int(reaction) is 4:
+            response.bad += 1
+            response.save()
+        request.session[str(slug)] = False
+        send_mail(
+            'New reaction on \"' + str(post) + '\"',
+            "Reaction #: " + reaction + "\n\n https://www.ebonsignori.com" + request.path +
+            "\n\n IP: " + request.META.get('REMOTE_ADDR') + "\n\n Host: " + request.META.get('REMOTE_HOST'),
+            'evan@ebonsignori.com',
+            ['evanabonsignori@gmail.com'],
+            fail_silently=True,
+            # html_message=True,
+        )
 
     return redirect('post_view', slug=post.slug)

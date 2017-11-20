@@ -138,3 +138,6 @@ EMAIL_USE_TLS = True
 # Media Files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads/')
 MEDIA_URL ='/uploads/'
+
+# Sessions
+SESSIONS_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
