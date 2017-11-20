@@ -219,7 +219,7 @@ def update_reaction(request, slug, reaction):
         send_mail(
             'New reaction on \"' + str(post) + '\"',
             "Reaction #: " + reaction + "\n\n https://www.ebonsignori.com" + request.path +
-            "\n\n IP: " + request.META.get('REMOTE_ADDR') + "\n\n Host: " + request.META.get('REMOTE_HOST'),
+            "\n\n IP: " + request.META.get('REMOTE_ADDR'),
             'evan@ebonsignori.com',
             ['evanabonsignori@gmail.com'],
             fail_silently=False,
