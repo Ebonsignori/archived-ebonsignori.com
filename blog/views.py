@@ -39,11 +39,11 @@ def post_view(request, slug):
 
             send_mail(
                 'New Comment on \"' + str(post) + '\"',
-                str(post.comments.last().comment_body + "\n\n https://www.ebonsignori.com" + request.path +
-                    "\n\n IP: " + request.META.get('REMOTE_ADDR') + "\n\n Host: " + request.META.get('REMOTE_HOST')),
+                str(post.comments.last().comment_body) + "\n\n https://www.ebonsignori.com" + request.path +
+                "\n\n IP: " + request.META.get('REMOTE_ADDR'),
                 'evan@ebonsignori.com',
                 ['evanabonsignori@gmail.com'],
-                fail_silently=True,
+                fail_silently=False,
                 # html_message=True,
             )
 
