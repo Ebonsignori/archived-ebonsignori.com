@@ -103,6 +103,15 @@ $('.smooth-scroll').on('click', function(e) {
 
 });
 
+// Contact Honey-pot
+function submitContact() {
+    if ($("#honey").val() == "") {
+        $("#contact-form").submit();
+    } else {
+        console.log("Sugar Sugar.... Ooooh _____ _____")
+    }
+}
+
 
 //Centers profile image and the four buttons around it
 function centerProfile() {

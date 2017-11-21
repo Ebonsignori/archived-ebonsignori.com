@@ -38,7 +38,7 @@ p {
   transition-delay: 1s;
   /*background-image: url('../../images/background.png');*/
   background-repeat: no-repeat;
-  background-size:fill;
+  background-size: cover;
   position: relative;
 }
 
@@ -1872,4 +1872,10 @@ img::-moz-selection {
     .minimize {
         height: 30px !important;
     }
+}
+/* End traditional About Me */
+
+/* Honey-Pot Form */
+.form-group.honey {
+    display: none;
 }

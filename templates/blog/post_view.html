@@ -48,19 +48,19 @@
         <span><strong>How Was This Post?</strong></span>
         <div class="reaction-options">
             <div class="reaction">
-                <a style="text-decoration: none;" href="{% url 'update_reaction' slug=post.slug reaction=1 %}"><button class="reaction-btn good">I Could Bookmark This</button></a>
+                <button onclick="location.href='{% url 'update_reaction' slug=post.slug reaction=1 %}';" class="reaction-btn good">I Could Bookmark This</button>
                 <span class="reaction-count">{{ responses.great }}</span>
             </div>
             <div class="reaction">
-                <a style="text-decoration: none;" href="{% url 'update_reaction' slug=post.slug reaction=2 %}"><button class="reaction-btn ok">It's OK</button></a>
+                <button onclick="location.href='{% url 'update_reaction' slug=post.slug reaction=2 %}';" class="reaction-btn ok">It's OK</button>
                 <span class="reaction-count">{{ responses.good }}</span>
             </div>
             <div class="reaction">
-                <a style="text-decoration: none;" href="{% url 'update_reaction' slug=post.slug reaction=3 %}"><button class="reaction-btn poor">Not So Great</button></a>
+                <button onclick="location.href='{% url 'update_reaction' slug=post.slug reaction=3 %}';" class="reaction-btn poor">Not So Great</button>
                 <span class="reaction-count">{{ responses.poor }}</span>
             </div>
             <div class="reaction">
-                <a style="text-decoration: none;" href="{% url 'update_reaction' slug=post.slug reaction=4 %}"><button class="reaction-btn bad">Remove This From The Internet</button></a>
+                <button onclick="location.href='{% url 'update_reaction' slug=post.slug reaction=4 %}';" class="reaction-btn bad">Remove This From The Internet</button>
                 <span class="reaction-count">{{ responses.bad }}</span>
             </div>
 

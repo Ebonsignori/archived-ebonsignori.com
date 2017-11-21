@@ -9,9 +9,9 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=200, null=True, blank=True)
     description = models.CharField(max_length=500)
-    preview = models.ForeignKey('blog.PostDisplayImage', null=True, blank=True, related_name='preview_image')
+    preview = models.ForeignKey('blog.PostDisplayImage', on_delete=models.SET_NULL, null=True, blank=True, related_name='preview_image')
     header_image = models.ImageField(null=True, blank=True, upload_to='blog/header_images/%Y/%m/')
-    category = models.ForeignKey('blog.Category', null=False, blank=False)
+    category = models.ForeignKey('blog.Category', on_delete=models.PROTECT, null=False, blank=False)
     text = MarkdownxField()
     created_date = models.DateTimeField(
             default=timezone.now)
