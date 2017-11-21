@@ -5,14 +5,27 @@ from markdownx.utils import markdownify
 from .models import Post, Category, Comment, PostResponse
 from .forms import PostForm, CategoryForm, CommentForm
 from django.core.mail import send_mail
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
 
 
 def post_list(request):
-    posts = Post.objects.filter(is_deleted=False).order_by('published_date')
+    posts_unpaged = Post.objects.filter(is_deleted=False).order_by('published_date')
     categories = Category.objects.all().order_by('order')
-    for post in posts:
-        post.text = markdownify(post.text)
+
+    paginator = Paginator(posts_unpaged, 10)
+
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
+
     return render(request, 'blog/posts.html', {'posts': posts, 'categories': categories})
 
 
@@ -176,8 +189,22 @@ def comment_remove(request, pk):
 
 def change_category(request, slug):
     category = Category.objects.filter(slug=slug)
+    posts_unpaged = Post.objects.filter(is_deleted=False, category=category).order_by('published_date')
     categories = Category.objects.all().order_by('order')
-    posts = Post.objects.filter(category=category).order_by('published_date')
+
+    paginator = Paginator(posts_unpaged, 10)
+
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
+
     return render(request, 'blog/posts.html', {'posts': posts, 'category': category[0], 'categories': categories})
 
 

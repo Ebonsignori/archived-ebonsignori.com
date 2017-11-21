@@ -658,3 +658,14 @@ comment-separator-overlay {
   background: red;
   color: white;
 }
+
+/* Pagination styling */
+.page-link {
+  color: black;
+  background-color: white;
+}
+
+.page-item.active .page-link {
+  background-color: grey !important;
+  border-color: grey !important;
+}

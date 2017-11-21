@@ -11,7 +11,7 @@ class Post(models.Model):
     description = models.CharField(max_length=500)
     preview = models.ForeignKey('blog.PostDisplayImage', null=True, blank=True, related_name='preview_image')
     header_image = models.ImageField(null=True, blank=True, upload_to='blog/header_images/%Y/%m/')
-    category = models.ForeignKey('blog.Category', on_delete=models.SET_NULL, null=True, blank=True)
+    category = models.ForeignKey('blog.Category', null=False, blank=False)
     text = MarkdownxField()
     created_date = models.DateTimeField(
             default=timezone.now)
@@ -35,6 +35,9 @@ class Post(models.Model):
 
     def get_preview_image(self):
         return self.preview.image
+
+    def get_cat_slug(self):
+        return self.category.slug
 
     def publish(self):
         self.is_published = True
