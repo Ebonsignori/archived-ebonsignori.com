@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from markdownx.utils import markdownify
 from .models import Post, Category, Comment, PostResponse
 from .forms import PostForm, CategoryForm, CommentForm
 from django.core.mail import send_mail
@@ -49,7 +48,6 @@ def post_view(request, slug):
             )
 
             comments = post.comments.all()
-            post.text = markdownify(post.text)
             return render(request, 'blog/post_view.html',
                           {'post': post, 'comments': comments, 'comment_form': comment_form, 'is_posted': True})
     else:
@@ -57,7 +55,6 @@ def post_view(request, slug):
 
     responses = post.responses.last()
     comments = post.comments.all()
-    post.text = markdownify(post.text)
     return render(request, 'blog/post_view.html', {'post': post, 'comments': comments, 'comment_form': comment_form, 'responses': responses})
 
 

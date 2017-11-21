@@ -1,7 +1,7 @@
 from django.db import models
-from markdownx.models import MarkdownxField
 from django.utils.text import slugify
 from django.utils import timezone
+from ckeditor_uploader.fields import RichTextUploadingField
 from PIL import Image
 
 class Post(models.Model):
@@ -12,7 +12,7 @@ class Post(models.Model):
     preview = models.ForeignKey('blog.PostDisplayImage', on_delete=models.SET_NULL, null=True, blank=True, related_name='preview_image')
     header_image = models.ImageField(null=True, blank=True, upload_to='blog/header_images/%Y/%m/')
     category = models.ForeignKey('blog.Category', on_delete=models.PROTECT, null=False, blank=False)
-    text = MarkdownxField()
+    text = RichTextUploadingField()
     created_date = models.DateTimeField(
             default=timezone.now)
     updated_date = models.DateTimeField(

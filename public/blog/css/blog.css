@@ -459,29 +459,7 @@ comment-separator-overlay {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-/* Markdownx form editor */
-.markdownx-editor {
-  display: inline-block;
-  overflow: scroll;
-  height: 1000px;
-  width: 35%;
-  margin-right: 5%;
-  font-size: .6em;
-}
-
-.markdownx-preview {
-  text-align: left;
-  float: right;
-  margin-right: 5%;
-  border: 1px solid black;
-  display: inline-block;
-  width: 35%;
-  height: 1000px;
-  overflow: auto;
-  resize: vertical;
-  margin-left: 5%;
-}
-
+/* Post Edit Form editor CSS */
 .edit-form li {
   list-style: none;
 }
@@ -512,6 +490,10 @@ comment-separator-overlay {
 .edit-form-wrap-comment .markdownx-preview {
     height: 250px;
     resize: none;
+}
+
+.edit-form li input#id_header_image {
+  margin-right: -7% !important;
 }
 
 /* Category Dropdown */

@@ -2,7 +2,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views
 from django.conf import settings
-from markdownx import urls as markdownx
 from django.conf.urls import ( # Import error pages
 handler400, handler403, handler404, handler500
 )
@@ -13,7 +12,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
-    url(r'^markdownx/', include(markdownx)),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 # Error Pages
