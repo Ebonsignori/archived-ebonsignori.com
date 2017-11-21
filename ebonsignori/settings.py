@@ -129,7 +129,6 @@ MEDIA_URL ='/uploads/'
 
 
 #Ckeditor
-CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, 'static/uploads/ckedit')
 CKEDITOR_BROWSE_SHOW_DIRS = True
 CKEDITOR_RESTRICT_BY_DATE = True
 CKEDITOR_CONFIGS = {
