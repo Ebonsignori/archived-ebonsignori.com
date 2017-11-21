@@ -163,7 +163,7 @@ def comment_edit(request, pk, slug):
         comment_form = CommentForm(request.POST, instance=comment)
         if comment_form.is_valid():
             comment_form.save()
-            return redirect('post_view', slug=post.slug)
+            return redirect('post_view', slug=comment.post.slug)
     else:
         comment_form = CommentForm(instance=comment)
 
