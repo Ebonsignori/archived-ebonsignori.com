@@ -9,7 +9,7 @@ from django.utils import timezone
 
 
 def post_list(request):
-    posts_unpaged = Post.objects.filter(is_deleted=False).order_by('published_date')
+    posts_unpaged = Post.objects.filter(is_deleted=False).order_by('-published_date')
     categories = Category.objects.all().order_by('order')
 
     paginator = Paginator(posts_unpaged, 10)
