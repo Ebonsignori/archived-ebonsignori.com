@@ -119,8 +119,8 @@ LOGOUT_REDIRECT_URL = '/blog/'
 # Email
 EMAIL_HOST = 'sub5.mail.dreamhost.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'evan@ebonsignori.com'
-EMAIL_HOST_PASSWORD = 'Kvothe586843'
+EMAIL_HOST_USER =
+EMAIL_HOST_PASSWORD =
 EMAIL_USE_TLS = True
 
 # Media Files
